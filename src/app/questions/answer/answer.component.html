@@ -1,0 +1,17 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <mat-form-field color="primary">
+        <mat-select placeholder="answer" formControlName="answer">
+            <mat-option [value]="0">Choice 1</mat-option>
+            <mat-option [value]="1">Choice 2</mat-option>
+            <mat-option [value]="2">Choice 3</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary">Submit answer</button>
+</form>
+
+<br>
+<div fxLayout="column" fxLayoutAlign="center">
+    <span><mat-icon color="primary">thumb_up</mat-icon></span>
+    <span><mat-icon color="primary">thumb_down</mat-icon></span>
+</div>
+
