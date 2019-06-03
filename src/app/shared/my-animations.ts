@@ -1,15 +1,20 @@
-import { animate, style, transition, trigger } from '@angular/animations';
+import { animate, group, query, style, transition, trigger } from '@angular/animations';
 
 export const routeFadeStateTrigger = trigger('routeFadeState', [
-  transition(':enter', [
-    style({
-      opacity: 0
-    }),
-    animate(500)
+  transition('* => *', [
+      group([
+        query(':enter', [
+          style({
+            opacity: 0
+          }),
+          animate('500ms ease-out')
+        ], { optional: true }),
+        query(':leave', animate('500ms ease-in', style({
+          opacity: 0,
+          transform: 'translateY(200%)'
+        })), { optional: true })
+      ])
   ]),
-  transition(':leave', animate(500, style({
-    opacity: 0
-  })))
 ]);
 
 export const routeSlideStateTrigger = trigger('routeSlideState', [

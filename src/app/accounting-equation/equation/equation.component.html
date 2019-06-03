@@ -1,0 +1,25 @@
+<h4>Which side (debit/credit) does the following account increase?</h4>
+<p>{{ randomAccount.name }}</p>
+<span>
+    <button
+        mat-raised-button
+        color="primary"
+        #debitRef
+        (click)="onDebitClicked(debitRef, creditRef)">Debit</button>
+</span>
+<span>
+    <button
+        mat-raised-button
+        color="primary"
+        #creditRef
+        (click)="onCreditClicked(creditRef, debitRef)">Credit</button>
+</span>
+
+<span *ngIf="sideChosen">
+    <span *ngIf="correct"><mat-icon color="primary">thumb_up</mat-icon></span>
+    <span *ngIf="correct">Good work!</span>
+    <span *ngIf="!correct"><mat-icon color="primary">thumb_down</mat-icon></span>
+    <span *ngIf="!correct">{{ randomAccount.name }} increases on the {{ randomAccount.increasingSide }} side!</span>
+</span>
+
+<p>Score: {{ score }}</p>
