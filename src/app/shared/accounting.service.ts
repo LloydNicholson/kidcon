@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Classifications } from './accounting.model';
+import { getRandomItem } from './functions';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,29 +32,43 @@ export class AccountingService {
       { name: 'Bank charges', alts: ['bank fees', 'bank charges'], increasingSide: 'debit' },
       { name: 'Consumable goods', alts: ['food', 'groceries', 'flowers'], increasingSide: 'debit' },
       { name: 'Interest on loan', alts: ['interest on long term liability'], increasingSide: 'debit' },
-      { name: 'Interest expense', alts: ['interest on bank account', 'interest'], increasingSide: 'debit' },
+      { name: 'Interest expense', alts: ['paid interest on bank account', 'interest paid'], increasingSide: 'debit' },
       { name: 'Postage', alts: ['postage', 'envelopes'], increasingSide: 'debit' },
-      { name: 'Donations', alts: ['donations', 'goods for the underprivileged'], increasingSide: 'debit' },
+      { name: 'Donations expense', alts: ['donations paid', 'goods for the underprivileged'], increasingSide: 'debit' },
       { name: 'Rent expense', alts: ['rent', 'rental'], increasingSide: 'debit' }
     ],
     liabilities: [
       { name: 'Loan', alts: ['a loan', 'a substantial loan'], increasingSide: 'credit' },
-      { name: 'Mortgage bond', alts: ['a property loan', 'a bond', 'a mortgage bond'], increasingSide: 'credit' }
+      { name: 'Mortgage bond', alts: ['a property loan', 'a bond', 'a mortgage bond'], increasingSide: 'credit' },
+      { name: 'Bank overdraft', alts: ['a negative bank balance', 'money owing on our bank account'], increasingSide: 'credit' },
+      { name: 'Creditors Control', alts: ['money owed to', 'creditor', 'paid on credit'], increasingSide: 'credit' },
     ],
     incomes: [
-      { name: 'Current income', alts: ['money for services rendered', 'money for a service'], increasingSide: 'credit' },
+      {
+        name: 'Current income',
+        alts: ['money for services rendered', 'money for a service'],
+        increasingSide: 'credit'
+      },
       { name: 'Rent income', alts: ['rent', 'rental'], increasingSide: 'credit' },
-      { name: 'Donations', alts: ['donations'], increasingSide: 'credit' },
+      { name: 'Donations income', alts: ['donations received'], increasingSide: 'credit' },
       { name: 'Commission', alts: ['commission', 'a percentage of sale'], increasingSide: 'credit' },
-      { name: 'Cash sales', alts: ['sales'], increasingSide: 'credit' }
+      { name: 'Sales', alts: ['sales'], increasingSide: 'credit' },
+      { name: 'Interest income', alts: ['interest received'], increasingSide: 'credit' },
     ],
     capital: [
-      { name: 'Capital', alts: ['contribution', 'capital'], increasingSide: 'credit' }
+      { name: 'Capital', alts: ['owner\'s contribution', 'capital'], increasingSide: 'credit' }
     ]
   };
 
-  getClassifications() {
-    return this.classifications;
+  get randomClassification() {
+    const classificationsArray = [];
+    Object.entries(this.classifications).forEach((entry) => {
+      classificationsArray.push({
+        type: entry[0],
+        details: entry[1]
+      });
+    });
+    return of(getRandomItem(classificationsArray));
   }
 }
 

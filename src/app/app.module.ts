@@ -9,12 +9,16 @@ import { QuestionsModule } from './questions/questions.module';
 import { AccountingEquationModule } from './accounting-equation/accounting-equation.module';
 import { HeaderComponent } from './shared/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { SidenavListComponent } from './shared/sidenav-list/sidenav-list.component';
+import { DialogComponent } from './shared/dialog.component';
 
 @NgModule({
+  entryComponents: [DialogComponent],
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    SidenavListComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +27,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     AccountingEquationModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FlexLayoutModule,
     SharedModule
   ],
   providers: [],

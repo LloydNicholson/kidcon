@@ -1,25 +1,43 @@
-<h4>Which side (debit/credit) does the following account increase?</h4>
-<p>{{ randomAccount.name }}</p>
-<span>
-    <button
-        mat-raised-button
-        color="primary"
-        #debitRef
-        (click)="onDebitClicked(debitRef, creditRef)">Debit</button>
-</span>
-<span>
-    <button
-        mat-raised-button
-        color="primary"
-        #creditRef
-        (click)="onCreditClicked(creditRef, debitRef)">Credit</button>
-</span>
+<!--<mat-table [dataSource]="accountList" class="mat-elevation-z8">-->
+<!--    &lt;!&ndash; name Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="name">-->
+<!--        <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>-->
+<!--        <mat-cell *matCellDef="let account"> {{account.name}} </mat-cell>-->
+<!--    </ng-container>-->
 
-<span *ngIf="sideChosen">
-    <span *ngIf="correct"><mat-icon color="primary">thumb_up</mat-icon></span>
-    <span *ngIf="correct">Good work!</span>
-    <span *ngIf="!correct"><mat-icon color="primary">thumb_down</mat-icon></span>
-    <span *ngIf="!correct">{{ randomAccount.name }} increases on the {{ randomAccount.increasingSide }} side!</span>
-</span>
+<!--    &lt;!&ndash; asset Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="assets">-->
+<!--        <mat-header-cell *matHeaderCellDef> Assets</mat-header-cell>-->
+<!--        <mat-cell *matCellDef="let account">-->
+<!--            <mat-checkbox [value]="account.assets"></mat-checkbox>-->
+<!--        </mat-cell>-->
+<!--    </ng-container>-->
 
-<p>Score: {{ score }}</p>
+<!--    &lt;!&ndash; Owner's Equity Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="ownersEquity">-->
+<!--        <mat-header-cell *matHeaderCellDef> Owner's Equity (E, I, D, C)</mat-header-cell>-->
+<!--        <mat-cell *matCellDef="let account">-->
+<!--            <mat-checkbox [value]="account.ownersEquity"></mat-checkbox>-->
+<!--        </mat-cell>-->
+<!--    </ng-container>-->
+
+<!--    &lt;!&ndash; Liabilities Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="liabilities">-->
+<!--        <mat-header-cell *matHeaderCellDef> Liabilities</mat-header-cell>-->
+<!--        <mat-cell *matCellDef="let account">-->
+<!--            <mat-checkbox [value]="account.liabilities"></mat-checkbox>-->
+<!--        </mat-cell>-->
+<!--    </ng-container>-->
+
+<!--    &lt;!&ndash; Next/Skip Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="next">-->
+<!--        <mat-header-cell *matHeaderCellDef> Next</mat-header-cell>-->
+<!--        <mat-cell *matCellDef="let account">-->
+<!--            <button mat-button [disabled]="account.next" (click)="onAddNewItem()">Next</button>-->
+<!--        </mat-cell>-->
+<!--    </ng-container>-->
+
+<!--    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>-->
+<!--    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>-->
+<!--</mat-table>-->
+

@@ -4,9 +4,11 @@ import { AccountingEquationRoutingModule } from './accounting-equation-routing.m
 
 import { AccountingEquationComponent } from './accounting-equation.component';
 import { EquationComponent } from './equation/equation.component';
+import { AccountTypeQuestionComponent } from './account-type-question/account-type-question.component';
+import { DebitCreditQuestionComponent } from './debit-credit-question/debit-credit-question.component';
 
 @NgModule({
-  declarations: [AccountingEquationComponent, EquationComponent],
+  declarations: [AccountingEquationComponent, EquationComponent, AccountTypeQuestionComponent, DebitCreditQuestionComponent],
   imports: [
     SharedModule,
     AccountingEquationRoutingModule

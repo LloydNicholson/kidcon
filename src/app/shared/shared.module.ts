@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { MaterialModule } from '../material.module';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ReactiveFormsModule,
     MaterialModule,
+    FormsModule,
     FlexLayoutModule
   ]
 })

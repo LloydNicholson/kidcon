@@ -1,17 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
-  template: `
-      <mat-toolbar color="primary">
-          <mat-toolbar-row>
-              <span><a routerLink="/"><h1>Kid Connect Accounting</h1></a></span>
-              <span><button mat-button routerLink="/home">Home</button></span>
-              <span><button mat-button routerLink="/questions">Questions</button></span>
-              <span><button mat-button routerLink="/accounting-equation">Accounting Equation</button></span>
-          </mat-toolbar-row>
-      </mat-toolbar>
-  `,
+  templateUrl: './header.component.html',
   styles:
       [`
            a, h1 {
@@ -26,5 +17,9 @@ import { Component } from '@angular/core';
        `]
 })
 export class HeaderComponent {
+  @Output() toggledNav = new EventEmitter<boolean>();
 
+  onToggle() {
+    this.toggledNav.emit(true);
+  }
 }

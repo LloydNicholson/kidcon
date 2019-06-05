@@ -1,0 +1,14 @@
+<h4>What account type (classification) are the following accounts?</h4>
+<form [formGroup]="form" (ngSubmit)="onFormSubmit()">
+  <span>{{ accountList }}</span>
+  <span>
+        <mat-form-field color="primary">
+            <mat-select formControlName="type" placeholder="type">
+                <mat-option value="asset">Asset</mat-option>
+                <mat-option value="ownersEquity">Owner's Equity</mat-option>
+                <mat-option value="liabilities">Liability</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </span>
+  <button mat-button (click)="onAddNewItem()">Another one</button>
+</form>
