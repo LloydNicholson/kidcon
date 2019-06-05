@@ -4,7 +4,7 @@ import { AccountingService } from '../../shared/accounting.service';
 import { thumbsDownStateTrigger, thumbsUpStateTrigger } from '../../shared/my-animations';
 import { Classification } from '../../shared/accounting.model';
 import { getRandomItem } from '../../shared/functions';
-import { DialogComponent } from '../../shared/dialog.component';
+import { ScoreDialogComponent } from '../../shared/score-dialog.component';
 
 @Component({
   selector: 'app-debit-credit-question',
@@ -92,8 +92,8 @@ export class DebitCreditQuestionComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width: '50%',
+    const dialogRef = this.dialog.open(ScoreDialogComponent, {
+      width: '70%',
       data: {
         questionsAnswered: this.questionCount,
         scoreAchieved: this.score
@@ -104,6 +104,5 @@ export class DebitCreditQuestionComponent implements OnInit {
       this.questionCount = 0;
       this.score = 0;
     });
-
   }
 }

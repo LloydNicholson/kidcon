@@ -1,6 +1,9 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row fxHide.gt-xs>
-        <button (click)="onToggle()" fxFlex="none" fxFlexAlign="center" mat-icon-button>
+        <button
+            mat-icon-button
+            (click)="onToggle()"
+            fxFlexAlign="center">
             <mat-icon>menu</mat-icon>
         </button>
         <span><a routerLink="/"><h1>Kid Connect Accounting</h1></a></span>
@@ -8,7 +11,7 @@
     <mat-toolbar-row fxHide.lt-sm>
         <span><a routerLink="/"><h1>Kid Connect Accounting</h1></a></span>
         <span><button mat-button routerLink="/home">Home</button></span>
-<!--        <span><button mat-button routerLink="/questions">Questions</button></span>-->
+        <!--        <span><button mat-button routerLink="/questions">Questions</button></span>-->
         <span><button mat-button routerLink="/accounting-equation">Accounting Equation</button></span>
     </mat-toolbar-row>
 </mat-toolbar>

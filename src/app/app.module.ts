@@ -10,15 +10,15 @@ import { AccountingEquationModule } from './accounting-equation/accounting-equat
 import { HeaderComponent } from './shared/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavListComponent } from './shared/sidenav-list/sidenav-list.component';
-import { DialogComponent } from './shared/dialog.component';
+import { ScoreDialogComponent } from './shared/score-dialog.component';
 
 @NgModule({
-  entryComponents: [DialogComponent],
+  entryComponents: [ScoreDialogComponent],
   declarations: [
     AppComponent,
     HeaderComponent,
     SidenavListComponent,
-    DialogComponent
+    ScoreDialogComponent
   ],
   imports: [
     BrowserModule,
