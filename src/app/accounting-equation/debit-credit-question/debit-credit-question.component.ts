@@ -46,6 +46,8 @@ export class DebitCreditQuestionComponent implements OnInit {
     if (this.accountIncreasingOn === 'debit') {
       this.correct = true;
       this.score += 1;
+    } else {
+      this.correct = false;
     }
     this.onClickedSide(debitRef, creditRef);
   }
@@ -55,6 +57,8 @@ export class DebitCreditQuestionComponent implements OnInit {
     if (this.accountIncreasingOn === 'credit') {
       this.correct = true;
       this.score += 1;
+    } else {
+      this.correct = false;
     }
     this.onClickedSide(debitRef, creditRef);
   }
