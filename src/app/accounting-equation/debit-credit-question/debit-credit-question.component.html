@@ -1,14 +1,13 @@
-<div>
-    <h4>Which side does the following account increase?</h4>
-    <p>{{ accountName }}</p>
-    <span>
+<h2>Which side does the following account increase?</h2>
+<h3>{{ accountName }}</h3>
+<span>
     <button
         mat-raised-button
         color="primary"
         #debitRef
         (click)="onDebitClicked(debitRef, creditRef)">Debit</button>
-</span>
-    <span>
+    </span>
+<span>
     <button
         mat-raised-button
         color="primary"
@@ -16,20 +15,20 @@
         (click)="onCreditClicked(creditRef, debitRef)">Credit</button>
 </span>
 
-    <div *ngIf="sideChosen" class="answered">
-        <span *ngIf="correct"><mat-icon @thumbsUpState color="primary">thumb_up</mat-icon></span>
-        <div *ngIf="correct">Good work! The <strong>{{ accountName | lowercase }}</strong> account is classified under
-            <strong>{{ accountType }}</strong>.
-        </div>
-        <span *ngIf="!correct"><mat-icon @thumbsDownState color="primary">thumb_down</mat-icon></span>
-        <div *ngIf="!correct">The <strong>{{ accountName | lowercase }}</strong> account increases on the
-            <strong>{{ accountIncreasingOn }}</strong> side because it is classified
-            under <strong>{{ accountType }}</strong>.
-        </div>
+<div *ngIf="sideChosen" class="answered">
+    <span *ngIf="correct"><mat-icon @thumbsUpState color="primary">thumb_up</mat-icon></span>
+    <div *ngIf="correct">Good work! The <strong>{{ accountName | lowercase }}</strong> account is classified under
+        <strong>{{ accountType }}</strong>.
     </div>
-
-    <div class="feedback">
-        <h4><strong>Score: {{ score }}</strong></h4>
-        <h5><strong>Questions answered: {{ questionCount }}</strong></h5>
+    <span *ngIf="!correct"><mat-icon @thumbsDownState color="primary">thumb_down</mat-icon></span>
+    <div *ngIf="!correct">The <strong>{{ accountName | lowercase }}</strong> account increases on the
+        <strong>{{ accountIncreasingOn }}</strong> side because it is classified
+        under <strong>{{ accountType }}</strong>.
     </div>
 </div>
+
+<div class="feedback">
+    <h4><strong>Score: {{ score }}</strong></h4>
+    <h5><strong>Questions answered: {{ questionCount }}</strong></h5>
+</div>
+

@@ -1,11 +1,11 @@
 :host {
     display: block;
     border: 1px solid black;
-    margin: 2rem;
-    padding: 5px;
+    margin: 1rem 0;
+    padding: 6px;
     border-radius: 5px;
     text-align: center;
-    box-shadow: 3px 3px lightgray;
+    box-shadow: 2px 3px lightgray;
 }
 
 button {
