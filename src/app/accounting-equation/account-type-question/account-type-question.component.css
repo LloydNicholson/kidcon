@@ -1,0 +1,17 @@
+button {
+    margin: 10px;
+}
+
+:host {
+    display: block;
+    border: 1px solid black;
+    margin: 1rem 5px;
+    padding: 6px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 2px 3px lightgray;
+}
+
+mat-icon {
+    margin: 10px;
+}

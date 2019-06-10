@@ -1,5 +1,4 @@
-<app-debit-credit-question></app-debit-credit-question>
-
-<!--<section class="picking-accounts">-->
-<!--    <app-account-type-question></app-account-type-question>-->
-<!--</section>-->
+<div fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-around" fxLayout.lt-sm="column">
+    <app-account-type-question [ngStyle.gt-sm]="{width: '45%'}"></app-account-type-question>
+    <app-debit-credit-question [ngStyle.gt-sm]="{width: '45%'}"></app-debit-credit-question>
+</div>

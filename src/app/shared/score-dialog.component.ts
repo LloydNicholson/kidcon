@@ -16,7 +16,7 @@ import { MAT_DIALOG_DATA } from '@angular/material';
               <h2>You scored {{ data.scoreAchieved }}/{{ data.questionsAnswered }}</h2>
           </div>
           <div mat-dialog-actions>
-              <button mat-button mat-dialog-close>Done</button>
+              <button mat-button color="primary" mat-dialog-close>Done</button>
           </div>
       </div>
   `,

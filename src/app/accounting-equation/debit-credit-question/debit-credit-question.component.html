@@ -5,25 +5,25 @@
         mat-raised-button
         color="primary"
         #debitRef
-        (click)="onDebitClicked(debitRef, creditRef)">Debit</button>
+        (click)="onClickedSide(debitRef, creditRef, 'debit')">Debit</button>
     </span>
 <span>
     <button
         mat-raised-button
         color="primary"
         #creditRef
-        (click)="onCreditClicked(creditRef, debitRef)">Credit</button>
+        (click)="onClickedSide(creditRef, debitRef, 'credit')">Credit</button>
 </span>
 
 <div *ngIf="sideChosen" class="answered">
     <span *ngIf="correct"><mat-icon @thumbsUpState color="primary">thumb_up</mat-icon></span>
-    <div *ngIf="correct">Good work! The <strong>{{ accountName | lowercase }}</strong> account is classified under
-        <strong>{{ accountType }}</strong>.
+    <div *ngIf="correct">Good work! The <strong>{{ accountName | lowercase }}</strong> account is classified
+        as {{ setAOrAn() }} <strong>{{ accountType }} account</strong>.
     </div>
-    <span *ngIf="!correct"><mat-icon @thumbsDownState color="primary">thumb_down</mat-icon></span>
+    <span *ngIf="!correct"><mat-icon @thumbsDownState color="accent">thumb_down</mat-icon></span>
     <div *ngIf="!correct">The <strong>{{ accountName | lowercase }}</strong> account increases on the
         <strong>{{ accountIncreasingOn }}</strong> side because it is classified
-        under <strong>{{ accountType }}</strong>.
+        as {{ setAOrAn() }} <strong>{{ accountType }} account</strong>.
     </div>
 </div>
 

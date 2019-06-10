@@ -16,9 +16,16 @@ a:active {
 
 .router {
     color: floralwhite;
-    background: rgba(137, 134, 238, 0.68);
+    background: rgba(79, 103, 237, 0.37);
 }
 
 :host {
     text-transform: uppercase;
 }
+
+/*.sidenav-button {*/
+/*    display: block;*/
+/*    height: 100%;*/
+/*    margin: 0 8px 0 0;*/
+/*    padding: 0;*/
+/*}*/
