@@ -1,27 +1,29 @@
 <div class="body-container">
-    <div>
-        <h2 class="body-header">ADELIC</h2>
-        <p>Test your ADELIC knowledge by using the following activities below. These activities test your
-            understanding of the ADELIC technique.</p>
-    </div>
+    <h2 class="body-header">ADELIC</h2>
+    <p class="body-paragraph">Test your ADELIC knowledge by using the following activities below. These activities test
+        your understanding of the ADELIC principle.</p>
     <div
-        fxLayout.gt-sm="row"
-        fxLayoutAlign.gt-sm="space-evenly"
-        fxLayout.lt-sm="column"
-        fxLayoutGap.gt-sm="20px">
-        <app-account-type-question
-            class="question-display-block"
-            fxFlex.gt-sm="50"
-            fxFlexAlign.gt-sm="start"></app-account-type-question>
-        <app-debit-credit-question
-            class="question-display-block"
-            fxFlex.gt-sm="50"
-            fxFlexAlign.lt-sm="end"></app-debit-credit-question>
+        fxLayout="column">
+        <div>
+            <h2 class="body-header">Account Classification</h2>
+            <p class="body-paragraph">There are various different types of classifications such as Assets, Liabilities
+                etc. and the only way to know them is to learn them parrot style. <b>Repeat, Repeat, Repeat!</b></p>
+            <app-account-type-question
+                class="question-display-block"></app-account-type-question>
+        </div>
+        <div>
+            <h2 class="body-header">ADELIC Principle Classification</h2>
+            <p class="body-paragraph"> Using ADELIC is a skill, guideline or map used to find the correct side that an
+                account increases or decreases. Make sure you know your account names and each of their classifications
+                and accounting becomes easy. Identifying which side each of these different accounts increase on will
+                make your general ledger, trial balance and accounting equation transactions easier.</p>
+            <app-debit-credit-question
+                class="question-display-block"></app-debit-credit-question>
+        </div>
     </div>
-
-    <div>
-        <h2 class="body-header">The Accounting Equation</h2>
-        <app-equation class="question-display-block"></app-equation>
-    </div>
+<!--    <div>-->
+<!--        <h2 class="body-header">The Accounting Equation</h2>-->
+<!--        <app-equation class="question-display-block"></app-equation>-->
+<!--    </div>-->
 </div>
 
