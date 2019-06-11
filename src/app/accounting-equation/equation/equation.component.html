@@ -1,43 +1,35 @@
-<!--<mat-table [dataSource]="accountList" class="mat-elevation-z8">-->
-<!--    &lt;!&ndash; name Column &ndash;&gt;-->
-<!--    <ng-container matColumnDef="name">-->
-<!--        <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>-->
-<!--        <mat-cell *matCellDef="let account"> {{account.name}} </mat-cell>-->
-<!--    </ng-container>-->
-
-<!--    &lt;!&ndash; asset Column &ndash;&gt;-->
-<!--    <ng-container matColumnDef="assets">-->
-<!--        <mat-header-cell *matHeaderCellDef> Assets</mat-header-cell>-->
-<!--        <mat-cell *matCellDef="let account">-->
-<!--            <mat-checkbox [value]="account.assets"></mat-checkbox>-->
-<!--        </mat-cell>-->
-<!--    </ng-container>-->
-
-<!--    &lt;!&ndash; Owner's Equity Column &ndash;&gt;-->
-<!--    <ng-container matColumnDef="ownersEquity">-->
-<!--        <mat-header-cell *matHeaderCellDef> Owner's Equity (E, I, D, C)</mat-header-cell>-->
-<!--        <mat-cell *matCellDef="let account">-->
-<!--            <mat-checkbox [value]="account.ownersEquity"></mat-checkbox>-->
-<!--        </mat-cell>-->
-<!--    </ng-container>-->
-
-<!--    &lt;!&ndash; Liabilities Column &ndash;&gt;-->
-<!--    <ng-container matColumnDef="liabilities">-->
-<!--        <mat-header-cell *matHeaderCellDef> Liabilities</mat-header-cell>-->
-<!--        <mat-cell *matCellDef="let account">-->
-<!--            <mat-checkbox [value]="account.liabilities"></mat-checkbox>-->
-<!--        </mat-cell>-->
-<!--    </ng-container>-->
-
-<!--    &lt;!&ndash; Next/Skip Column &ndash;&gt;-->
-<!--    <ng-container matColumnDef="next">-->
-<!--        <mat-header-cell *matHeaderCellDef> Next</mat-header-cell>-->
-<!--        <mat-cell *matCellDef="let account">-->
-<!--            <button mat-button [disabled]="account.next" (click)="onAddNewItem()">Next</button>-->
-<!--        </mat-cell>-->
-<!--    </ng-container>-->
-
-<!--    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>-->
-<!--    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>-->
-<!--</mat-table>-->
-
+<form (ngSubmit)="onSubmit()">
+    <div fxLayout fxLayout.lt-sm="column">
+        <div fxFlex.gt-sm="80">
+            <table style="width: 100%">
+                <tr>
+                    <th>Transaction</th>
+                    <th>Assets</th>
+                    <th>Owner's Equity</th>
+                    <th>Liabilities</th>
+                </tr>
+                <tr>
+                    <td>{{ transaction }}</td>
+                    <td>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="e.g. +1000" [formControl]="assetValue">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="e.g. +1000" [formControl]="ownersEquityValue">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="e.g. +1000" [formControl]="liabilitiesValue">
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div fxFlex.gt-sm fxFlexAlign.gt-sm="center">
+            <button mat-raised-button type="submit" color="primary">Check</button>
+        </div>
+    </div>
+</form>

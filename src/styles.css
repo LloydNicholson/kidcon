@@ -2,6 +2,10 @@
 
 html, body {
     height: 100%;
+    --block-color: rgba(17, 70, 175, 0.15);
+    --initial-shadow-color: rgba(0, 0, 0, 0.2);
+    --hover-shadow-color: rgba(0, 0, 0, 0.4);
+    --primary-color: #3f51b5;
 }
 
 body {
@@ -9,7 +13,48 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-h2 {
+.body-container {
+    margin: 10px;
+    padding: 0;
+}
+
+.body-header {
     margin: 2rem 0;
     font-family: Roboto, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    text-transform: uppercase;
+}
+
+.body-paragraph {
+    margin: 1rem 0 0 0;
+}
+
+.question-display-block {
+    display: block;
+    background-color: var(--block-color);
+    border: 1px solid black;
+    padding: 20px;
+    margin: 1rem 5px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 3px 5px 0 var(--initial-shadow-color);
+}
+
+.question-display-block:hover,
+.question-display-block:active {
+    box-shadow: 0 5px 20px 0 var(--hover-shadow-color);
+    transform: translateY(-1px);
+    transition: box-shadow 500ms;
+}
+
+a {
+    text-decoration: none;
+    color: rgba(145, 61, 52, 0.79);
+    font-weight: bold;
+}
+
+a:hover,
+a:focus,
+a:active {
+    color: #9c716e;
+    font-weight: bolder;
 }

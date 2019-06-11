@@ -1,4 +1,27 @@
-<div fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-around" fxLayout.lt-sm="column">
-    <app-account-type-question [ngStyle.gt-sm]="{width: '45%'}"></app-account-type-question>
-    <app-debit-credit-question [ngStyle.gt-sm]="{width: '45%'}"></app-debit-credit-question>
+<div class="body-container">
+    <div>
+        <h2 class="body-header">ADELIC</h2>
+        <p>Test your ADELIC knowledge by using the following activities below. These activities test your
+            understanding of the ADELIC technique.</p>
+    </div>
+    <div
+        fxLayout.gt-sm="row"
+        fxLayoutAlign.gt-sm="space-evenly"
+        fxLayout.lt-sm="column"
+        fxLayoutGap.gt-sm="20px">
+        <app-account-type-question
+            class="question-display-block"
+            fxFlex.gt-sm="50"
+            fxFlexAlign.gt-sm="start"></app-account-type-question>
+        <app-debit-credit-question
+            class="question-display-block"
+            fxFlex.gt-sm="50"
+            fxFlexAlign.lt-sm="end"></app-debit-credit-question>
+    </div>
+
+    <div>
+        <h2 class="body-header">The Accounting Equation</h2>
+        <app-equation class="question-display-block"></app-equation>
+    </div>
 </div>
+

@@ -8,15 +8,5 @@ mat-sidenav-content, mat-sidenav-container {
 }
 
 mat-sidenav {
-    width: 50%;
-}
-
-.big-display-box {
-    display: block;
-    border: 1px solid black;
-    margin: 1rem 0;
-    padding: 6px;
-    border-radius: 5px;
-    text-align: center;
-    box-shadow: 2px 3px lightgray;
+    width: 60%;
 }

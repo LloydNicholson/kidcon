@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatButton, MatDialog } from '@angular/material';
+import { MatButton, MatDialog, MatSnackBar } from '@angular/material';
 import { AccountingService } from '../../shared/accounting.service';
 import { thumbsDownStateTrigger, thumbsUpStateTrigger } from '../../shared/my-animations';
 import { Classification, ClassificationData } from '../../shared/accounting.model';
@@ -28,7 +28,8 @@ export class DebitCreditQuestionComponent implements OnInit {
 
   constructor(
       private accountingService: AccountingService,
-      private dialog: MatDialog
+      private dialog: MatDialog,
+      private snackBar: MatSnackBar
   ) {
   }
 
@@ -95,5 +96,9 @@ export class DebitCreditQuestionComponent implements OnInit {
   setAOrAn() {
     const accounts = ['asset', 'expense', 'income'];
     return accounts.indexOf(this.accountType) !== -1 ? 'an' : 'a';
+  }
+
+  openSnackBar() {
+    this.snackBar.open(this.correct ? 'correct' : 'incorrect');
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Classifications } from './accounting.model';
-import { getRandomItem } from './functions';
+import { getRandomDate, getRandomisedNum, getRandomItem } from './functions';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -8,6 +8,24 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AccountingService {
+  private smallAmount = getRandomisedNum(500, 25000);
+  private mediumAmount = getRandomisedNum(25000, 100000);
+  private largeAmount = getRandomisedNum(100000, 1000000);
+  private date: number = getRandomDate().currentDate;
+  private ownerName: string;
+  private businessName: string;
+  private methods: string[] = [
+    'bought',
+    'paid',
+    'purchased',
+    'received',
+    'borrowed',
+    'paid back',
+    'settled',
+    'sold',
+    'put in'
+  ];
+  private documentType: string;
   private classifications: Classifications = {
     assets: [
       {
@@ -141,6 +159,25 @@ export class AccountingService {
 
   get allClassifications() {
     return of(this.classifications);
+  }
+
+  get amount() {
+    return {
+      small: this.smallAmount,
+      medium: this.mediumAmount,
+      large: this.largeAmount
+    };
+  }
+
+  get randomTransactionDetails() {
+    return of({
+      date: this.date,
+      transactionAmount: this.amount,
+      ownerName: this.ownerName,
+      businessName: this.businessName,
+      methods: this.methods,
+      documentType: this.documentType
+    });
   }
 
   get randomClassification() {

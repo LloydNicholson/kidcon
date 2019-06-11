@@ -23,3 +23,12 @@ export interface ClassificationData {
   increasingSide: string;
 
 }
+
+export interface TransactionData {
+  date: number;
+  transactionAmount: { small: number, medium: number, large: number };
+  ownerName: string;
+  businessName: string;
+  methods: string[];
+  documentType: string;
+}

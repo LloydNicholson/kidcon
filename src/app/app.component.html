@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav mode="push" #sidenav>
+    <mat-sidenav mode="over" #sidenav>
         <app-sidenav-list (didNavigate)="sidenav.toggle()"></app-sidenav-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -7,5 +7,6 @@
         <main [@routeFadeState]="getAnimationData(outlet)">
             <router-outlet #outlet=outlet></router-outlet>
         </main>
+<!--        <app-footer></app-footer>-->
     </mat-sidenav-content>
 </mat-sidenav-container>
