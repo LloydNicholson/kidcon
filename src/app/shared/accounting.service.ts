@@ -15,17 +15,17 @@ export class AccountingService {
   private ownerName: string;
   private businessName: string;
   private methods: string[] = [
-    'bought',
-    'paid',
-    'purchased',
-    'received',
-    'borrowed',
-    'paid back',
-    'settled',
-    'sold',
-    'put in'
+    'Bought',
+    'Paid for',
+    'Purchased',
+    'Received',
+    'Acquired',
+    'Borrowed',
+    'Paid back',
+    'Settled',
   ];
   private documentType: string;
+  private types = ['cash', 'credit'];
   private classifications: Classifications = {
     assets: [
       {
@@ -55,8 +55,8 @@ export class AccountingService {
       },
       { name: 'Petty Cash', alts: ['cash on hand', 'cash box in office'], increasingSide: 'debit', type: 'asset' },
       { name: 'Cash float', alts: ['change in the till'], increasingSide: 'debit', type: 'asset' },
-      { name: 'Bank', alts: ['cash in the bank account', 'cash used'], increasingSide: 'debit', type: 'asset' },
       { name: 'Furniture', alts: ['bought a couch', 'purchased a table'], increasingSide: 'debit', type: 'asset' },
+      { name: 'Bank', alts: ['cash in the bank account', 'cash used'], increasingSide: 'debit', type: 'asset' },
     ],
     drawings: [
       { name: 'Drawings', alts: ['drawings', 'money'], increasingSide: 'debit', type: 'drawings' }
@@ -175,9 +175,18 @@ export class AccountingService {
       transactionAmount: this.amount,
       ownerName: this.ownerName,
       businessName: this.businessName,
-      methods: this.methods,
-      documentType: this.documentType
+      methods: [...this.methods],
+      documentType: this.documentType,
+      paymentTypes: [...this.types]
     });
+  }
+
+  get paymentMethods() {
+    return this.methods.slice(0, 3);
+  }
+
+  get receivingMethods() {
+    return this.methods.slice(3);
   }
 
   get randomClassification() {

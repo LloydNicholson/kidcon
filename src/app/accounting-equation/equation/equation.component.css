@@ -1,3 +1,13 @@
 span {
     margin-left: 5px;
 }
+
+button {
+    margin: 5px;
+    color: white;
+}
+
+.selected {
+    color: white;
+    background-color: lightgreen;
+}

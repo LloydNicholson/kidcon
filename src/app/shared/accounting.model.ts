@@ -21,7 +21,6 @@ export interface ClassificationData {
   accountType: string;
   accountName: string;
   increasingSide: string;
-
 }
 
 export interface TransactionData {
@@ -31,4 +30,12 @@ export interface TransactionData {
   businessName: string;
   methods: string[];
   documentType: string;
+  paymentTypes: string[];
+}
+
+export interface AccountTypes {
+  decreasingOEAccounts: Classification[];
+  increasingOEAccounts: Classification[];
+  assetAccounts: Classification[];
+  liabilityAccounts: Classification[];
 }

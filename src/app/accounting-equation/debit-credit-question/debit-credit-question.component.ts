@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatButton, MatDialog, MatSnackBar } from '@angular/material';
 import { AccountingService } from '../../shared/accounting.service';
 import { thumbsDownStateTrigger, thumbsUpStateTrigger } from '../../shared/my-animations';
 import { Classification, ClassificationData } from '../../shared/accounting.model';
 import { ScoreDialogComponent } from '../../shared/score-dialog.component';
 import { getRandomItem } from '../../shared/functions';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-debit-credit-question',
@@ -15,8 +16,9 @@ import { getRandomItem } from '../../shared/functions';
     thumbsDownStateTrigger
   ]
 })
-export class DebitCreditQuestionComponent implements OnInit {
+export class DebitCreditQuestionComponent implements OnInit, OnDestroy {
   classification: Classification;
+  classificationsSub: Subscription;
   accountType: string;
   accountIncreasingOn: string;
   accountName: string;
@@ -77,19 +79,20 @@ export class DebitCreditQuestionComponent implements OnInit {
   }
 
   getClassificationAccount() {
-    this.accountingService.randomClassification.subscribe((classification: ClassificationData) => {
+    this.classificationsSub = this.accountingService.randomClassification
+    .subscribe((classification: ClassificationData) => {
       if (this.accountsAsked.indexOf(classification.accountName) !== -1) {
         this.classification = getRandomItem(classification.valuesArray);
-        console.log('repeated item');
+        // console.log('repeated item');
       } else {
         this.classification = classification.chosenAccount;
-        console.log('new item');
+        // console.log('new item');
       }
       this.accountName = this.classification.name;
       this.accountType = this.classification.type;
       this.accountIncreasingOn = this.classification.increasingSide;
       this.accountsAsked.push(this.classification.name);
-      console.log(this.accountsAsked);
+      // console.log(this.accountsAsked);
     });
   }
 
@@ -98,7 +101,11 @@ export class DebitCreditQuestionComponent implements OnInit {
     return accounts.indexOf(this.accountType) !== -1 ? 'an' : 'a';
   }
 
-  openSnackBar() {
-    this.snackBar.open(this.correct ? 'correct' : 'incorrect');
+  // openSnackBar() {
+  //   this.snackBar.open(this.correct ? 'correct' : 'incorrect');
+  // }
+
+  ngOnDestroy() {
+    this.classificationsSub.unsubscribe();
   }
 }

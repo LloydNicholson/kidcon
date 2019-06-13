@@ -1,6 +1,6 @@
 main {
     overflow-y: hidden;
-    margin: 0 1rem;
+    margin: 56px 1rem 0 1rem;
 }
 
 mat-sidenav-content, mat-sidenav-container {

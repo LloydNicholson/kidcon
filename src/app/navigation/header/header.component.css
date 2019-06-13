@@ -20,7 +20,12 @@ a:active {
 }
 
 :host {
+    position: fixed;
+    top: 0;
+    width: 100%;
     text-transform: uppercase;
+    z-index: 1;
+    box-shadow: 0 6px 8px 0 var(--initial-shadow-color);
 }
 
 /*.sidenav-button {*/

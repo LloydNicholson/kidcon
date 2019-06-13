@@ -1,20 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountingService } from '../shared/accounting.service';
+import { Classifications } from '../shared/accounting.model';
 
 @Component({
   selector: 'app-accounting-equation',
   templateUrl: './accounting-equation.component.html',
   styleUrls: ['./accounting-equation.component.css'],
-  animations: [
-    // routeSlideStateTrigger
-  ]
+  animations: []
 })
 export class AccountingEquationComponent implements OnInit {
-  // @HostBinding('@routeSlideState') routeSlideAnimation = true;
+  classifications: Classifications;
 
-  constructor() {
+  constructor(private accountingService: AccountingService) {
   }
 
   ngOnInit() {
+    this.accountingService.allClassifications.subscribe((classifications: Classifications) => {
+      this.classifications = classifications;
+    });
   }
 
 }

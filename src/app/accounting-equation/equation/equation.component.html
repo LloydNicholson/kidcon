@@ -1,35 +1,86 @@
 <form (ngSubmit)="onSubmit()">
-    <div fxLayout fxLayout.lt-sm="column">
-        <div fxFlex.gt-sm="80">
-            <table style="width: 100%">
-                <tr>
-                    <th>Transaction</th>
-                    <th>Assets</th>
-                    <th>Owner's Equity</th>
-                    <th>Liabilities</th>
-                </tr>
-                <tr>
-                    <td>{{ transaction }}</td>
-                    <td>
-                        <mat-form-field>
-                            <input matInput type="text" placeholder="e.g. +1000" [formControl]="assetValue">
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field>
-                            <input matInput type="text" placeholder="e.g. +1000" [formControl]="ownersEquityValue">
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field>
-                            <input matInput type="text" placeholder="e.g. +1000" [formControl]="liabilitiesValue">
-                        </mat-form-field>
-                    </td>
-                </tr>
-            </table>
+    <!--    <h2 class="body-header">-->
+    <!--        Test your {{ nameOfClass }} accounts.-->
+    <!--    </h2>-->
+    <div fxLayout fxLayout.lt-sm="column" fxLayoutGap="10px">
+        <div fxFlex="22">
+            <div>
+                <h4>Transaction</h4>
+            </div>
+            <p>{{ method }} {{ currentAccount.name | lowercase }} with {{ typeOfPayment }}</p>
         </div>
-        <div fxFlex.gt-sm fxFlexAlign.gt-sm="center">
-            <button mat-raised-button type="submit" color="primary">Check</button>
+        <div fxFlex="22">
+            <div>
+                <h4>Assets</h4>
+            </div>
+            <button
+                mat-raised-button
+                type="button"
+                color="primary"
+                (click)="!assetIncrease.value ? assetIncrease.setValue(true) : assetIncrease.setValue(false)"
+                [ngClass]="{selected: assetIncrease.value}">
+                +
+            </button>
+            <button
+                mat-raised-button
+                type="button"
+                color="accent"
+                (click)="!assetDecrease.value ? assetDecrease.setValue(true) : assetDecrease.setValue(false)"
+                [ngClass]="{selected: assetDecrease.value}">-
+            </button>
+        </div>
+        <div fxFlex="22">
+            <div>
+                <h4>Owner's Equity</h4>
+            </div>
+            <button
+                mat-raised-button
+                type="button"
+                color="primary"
+                (click)="ownersEquity.setValue('increase')"
+                [ngClass]="{selected: ownersEquity.value === 'increase'}">
+                +
+            </button>
+            <button
+                mat-raised-button
+                type="button"
+                color="accent"
+                (click)="ownersEquity.setValue('decrease')"
+                [ngClass]="{selected: ownersEquity.value === 'decrease'}">-
+            </button>
+        </div>
+        <div fxFlex="22">
+            <div>
+                <h4>Liabilities</h4>
+            </div>
+            <button
+                mat-raised-button
+                type="button"
+                color="primary"
+                (click)="!liabilitiesIncrease.value ? liabilitiesIncrease.setValue(true) : liabilitiesIncrease.setValue(false)"
+                [ngClass]="{selected: liabilitiesIncrease.value}">
+                +
+            </button>
+            <button
+                mat-raised-button
+                type="button"
+                color="accent"
+                (click)="!liabilitiesDecrease.value ? liabilitiesDecrease.setValue(true) : liabilitiesDecrease.setValue(false)"
+                [ngClass]="{selected: liabilitiesDecrease.value}">-
+            </button>
+        </div>
+        <div fxFlex="12" fxFlexAlign="center">
+            <button
+                mat-raised-button
+                type="button"
+                color="warn"
+                (click)="form.reset()">Clear
+            </button>
+            <button
+                mat-raised-button
+                type="submit"
+                color="primary">Check
+            </button>
         </div>
     </div>
 </form>

@@ -14,18 +14,19 @@ body {
 }
 
 .body-container {
-    margin: 10px;
-    padding: 0;
+    margin: 0 1rem 3rem 1rem;
 }
 
 .body-header {
-    margin: 2rem 0;
+    margin: 28px 0 0 0;
     font-family: Roboto, sans-serif;
     text-transform: uppercase;
 }
 
 .body-paragraph {
-    margin: 2rem 0;
+    margin: 1rem 0;
+    font-size: 18px;
+    line-height: 2rem;
 }
 
 .question-display-block {
@@ -39,10 +40,11 @@ body {
 }
 
 .question-display-block:hover,
-.question-display-block:active {
+.question-display-block:active,
+.question-display-block:focus {
     box-shadow: 0 5px 20px 0 var(--hover-shadow-color);
-    transform: translateY(-1px);
-    transition: box-shadow 500ms;
+    transform: translateY(-2px);
+    transition: box-shadow 500ms, transform 500ms;
 }
 
 a {
