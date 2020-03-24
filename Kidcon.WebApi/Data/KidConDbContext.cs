@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using Kidcon.Shared;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
-namespace Kidcon.Shared.Data
+namespace Kidcon.WebApi.Data
 {
     public class KidConDbContext : DbContext
     {
@@ -13,13 +16,15 @@ namespace Kidcon.Shared.Data
         public KidConDbContext(DbContextOptions<KidConDbContext> options) : base(options)
         { }
 
-        public DbSet<User> User { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Name> Names { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<User>().HasKey(u => u.Id);
+            modelBuilder.Entity<User>();
+            modelBuilder.Entity<Name>();
         }
     }
 }

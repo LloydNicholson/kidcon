@@ -1,16 +1,36 @@
 ﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Kidcon.WebApi.Data;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Kidcon.WebApi.Controllers
+namespace Kidcon.WebApi.Controllers.v1
 {
-    public class UserController
+    [Route("v1/user")]
+    [ApiController]
+    public class UserController : Controller
     {
-        private readonly DbContext _dbContext;
+        private readonly KidConDbContext _dbContext;
 
-        public UserController(DbContext kidConDbContext)
+        public UserController(KidConDbContext kidConDbContext)
         {
             _dbContext = kidConDbContext;
         }
 
+        [HttpGet]
+        public IActionResult GetUsers()
+        {
+            using (var dbContext = OpenDbContext())
+            {
+                var users = dbContext.Users.ToList();
+                return Ok(users);
+            }
+        }
+
+        private KidConDbContext OpenDbContext()
+        {
+            return _dbContext ?? new KidConDbContext();
+        }
     }
 }
