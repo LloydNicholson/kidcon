@@ -1,0 +1,41 @@
+﻿@page "/questions"
+@inherits QuestionsBase
+
+<h2>Which side does the following account increase?</h2>
+<div><h3>{{ accountName }}</h3></div>
+<span>
+    <button mat-raised-button
+            color="primary"
+            #debitRef
+            (click)="onClickedSide(debitRef, creditRef, 'debit')">
+        Debit
+    </button>
+</span>
+<span>
+    <button mat-raised-button
+            color="primary"
+            #creditRef
+            (click)="onClickedSide(creditRef, debitRef, 'credit')">
+        Credit
+    </button>
+</span>
+
+<div *ngIf="sideChosen" class="answered">
+    <span *ngIf="correct"><mat-icon @thumbsUpState color="primary">thumb_up</mat-icon></span>
+    <div *ngIf="correct">
+        Good work! The <strong>{{ accountName | lowercase }}</strong> account is classified
+        as {{ setAOrAn() }} <strong>{{ accountType }} account</strong>.
+    </div>
+    <span *ngIf="!correct"><mat-icon @thumbsDownState color="accent">thumb_down</mat-icon></span>
+    <div *ngIf="!correct">
+        The <strong>{{ accountName | lowercase }}</strong> account increases on the
+        <strong>{{ accountIncreasingOn }}</strong> side because it is classified
+        as {{ setAOrAn() }} <strong>{{ accountType }} account</strong>.
+    </div>
+</div>
+
+<div class="feedback">
+    <h4><strong>Score: {{ score }}</strong></h4>
+    <h5><strong>Questions answered: {{ questionCount }}/10</strong></h5>
+</div>
+

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Kidcon.Server.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,7 @@ namespace Kidcon.Server
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddHttpClient<IEquationService, EquationService>(options => options.BaseAddress = new Uri("http://localhost:5002"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
