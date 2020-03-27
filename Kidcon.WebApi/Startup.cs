@@ -31,6 +31,10 @@ namespace Kidcon.WebApi
             services.AddDbContext<KidConDbContext>(options => options.UseSqlite("Data Source=kidConDb.db"));
 
             services.AddCors(action => action.AddPolicy("Open", builder => builder.AllowAnyHeader().AllowAnyOrigin()));
+
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

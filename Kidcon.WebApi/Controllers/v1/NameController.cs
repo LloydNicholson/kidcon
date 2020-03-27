@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Kidcon.Shared;
+using Kidcon.Shared.Models;
 using Kidcon.WebApi.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -29,8 +30,8 @@ namespace Kidcon.WebApi.Controllers.v1
                 var names = dbContext.Names.AsNoTracking()
                     .ToArray();
 
-                var randomFirstName = names[GetRandomNumber(names.Length)].FirstName;
-                var randomLastName = names[GetRandomNumber(names.Length)].LastName;
+                var randomFirstName = names[Helpers.Helpers.GetRandomNumber(names.Length)].FirstName;
+                var randomLastName = names[Helpers.Helpers.GetRandomNumber(names.Length)].LastName;
 
                 return Ok($"{randomFirstName} {randomLastName}");
             }
@@ -54,10 +55,5 @@ namespace Kidcon.WebApi.Controllers.v1
             return Ok(newNames);
         }
 
-        private int GetRandomNumber(int limit)
-        {
-            var randomNum = new Random().Next(limit);
-            return randomNum;
-        }
     }
 }
