@@ -27,8 +27,14 @@ namespace Kidcon.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddServerSideBlazor();
+            services.AddServerSideBlazor()
+                .AddCircuitOptions(options =>
+                {
+                    options.DetailedErrors = true;
+                });
+
             services.AddHttpClient<IEquationService, EquationService>(options => options.BaseAddress = new Uri("http://localhost:5002"));
+            services.AddHttpClient<IAccountService, AccountService>(options => options.BaseAddress = new Uri("http://localhost:5002"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
