@@ -13,17 +13,15 @@ namespace Kidcon.Server.Pages
     {
         [Inject]
         public IEquationService EquationService { get; set; }
-
         [Inject]
         public IAccountService AccountService { get; set; }
-
         public Account Account { get; set; }
-
         public bool Correct { get; set; } = false;
-
         public string Answer { get; set; }
-
         public bool DidAnswer { get; set; }
+        public int Time { get; set; } = 3;
+        public int Score { get; set; }
+        public int QuestionCount { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -35,6 +33,7 @@ namespace Kidcon.Server.Pages
             Account = await AccountService.GetRandomAccount();
             Answer = null;
             DidAnswer = false;
+            Time = 3;
             StateHasChanged();
         }
 
@@ -43,11 +42,31 @@ namespace Kidcon.Server.Pages
             DidAnswer = true;
             Answer = answer;
             Correct = Answer == Account.IncreasingSide;
-            StateHasChanged();
-            Task.Delay(3000).ContinueWith(async t =>
+
+            if (Correct)
             {
-                await GetNewAccount();
-            });
+                Score++;
+            }
+            QuestionCount++;
+
+            if (QuestionCount >= 10)
+            {
+                // Create a modal or something to give them their score
+                return;
+            }
+
+            StartTimerAsync();
+        }
+
+        public async void StartTimerAsync()
+        {
+            while (Time > 0)
+            {
+                Time--;
+                StateHasChanged();
+                await Task.Delay(1000);
+            }
+            await GetNewAccount();
         }
     }
 }

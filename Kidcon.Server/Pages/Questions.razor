@@ -36,7 +36,27 @@
     }
 
     <div class="feedback">
-        <h4><strong>Score: {{ score }}</strong></h4>
-        <h5><strong>Questions answered: {{ questionCount }}/10</strong></h5>
+        <h5>Score: @Score</h5>
+        <h5>Questions answered: @QuestionCount /10</h5>
     </div>
+
+    @if (QuestionCount == 10)
+    {
+        if (Score > 1 && Score <= 5)
+        {
+            <div>Ah, you achieved @Score / 10! Better luck next time!</div>
+        }
+        else if (Score > 5 && Score < 10)
+        {
+            <div>Well done, you achieved @Score / 10! Wow pretty good!</div>
+        }
+        else if (Score == 10)
+        {
+            <div>Amazing, you achieved @Score / 10! Brilliant</div>
+        }
+        else
+        {
+            <div>Wat gebeur!</div>
+        }
+    }
 }

@@ -15,7 +15,6 @@ namespace Kidcon.WebApi.Controllers.v1
     [Route("v1/account")]
     public class AccountController : Controller
     {
-
         private readonly KidConDbContext _dbContext;
 
         public AccountController(KidConDbContext kidConDbContext)
@@ -82,11 +81,25 @@ namespace Kidcon.WebApi.Controllers.v1
 
             var accounts = dbContext.Accounts.AsNoTracking()
                 .Include(a => a.Classification)
+                .Include(a => a.Alternatives)
                 .ToArray();
 
             var randomAccount = accounts[Helpers.Helpers.GetRandomNumber(accounts.Length)];
 
             return Ok(randomAccount);
+        }
+
+        [HttpGet]
+        [Route("alternatives")]
+        public IActionResult GetAlternatives()
+        {
+            using var dbContext = _dbContext;
+
+            var alts = dbContext.Alternatives.AsNoTracking()
+                .Include(a => a.Account)
+                .ToArray();
+
+            return Ok(alts);
         }
     }
 }

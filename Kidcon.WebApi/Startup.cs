@@ -28,7 +28,7 @@ namespace Kidcon.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<KidConDbContext>(options => options.UseSqlite("Data Source=kidConDb.db"));
+            services.AddDbContext<KidConDbContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddCors(action => action.AddPolicy("Open", builder => builder.AllowAnyHeader().AllowAnyOrigin()));
 
