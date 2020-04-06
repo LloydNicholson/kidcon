@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RazorLangVersion>3.0</RazorLangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.2.0-preview1.20073.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.2.0-preview1.20073.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.DevServer" Version="3.2.0-preview1.20073.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.2.0-preview1.20073.1" />
+    <PackageReference Include="MatBlazor" Version="2.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\" />
+    <Folder Include="Components\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Pages\Index.razor" />
+    <Content Remove="wwwroot\css\site.css" />
+    <Content Remove="wwwroot\css\bootstrap\bootstrap.min.css" />
+    <Content Remove="wwwroot\css\bootstrap\bootstrap.min.css.map" />
+    <Content Remove="wwwroot\css\open-iconic\FONT-LICENSE" />
+    <Content Remove="wwwroot\css\open-iconic\ICON-LICENSE" />
+    <Content Remove="wwwroot\css\open-iconic\README.md" />
+    <Content Remove="wwwroot\css\open-iconic\font\css\open-iconic-bootstrap.min.css" />
+    <Content Remove="wwwroot\css\open-iconic\font\fonts\open-iconic.svg" />
+    <Content Remove="wwwroot\css\open-iconic\font\fonts\open-iconic.woff" />
+    <Content Remove="wwwroot\css\open-iconic\font\fonts\open-iconic.ttf" />
+    <Content Remove="wwwroot\css\open-iconic\font\fonts\open-iconic.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Kidcon\Kidcon.Shared\Kidcon.Shared.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
