@@ -20,7 +20,7 @@ namespace Kidcon.Client.Pages
         public bool DidAnswer { get; set; }
         public int Time { get; set; } = 3;
         public int Score { get; set; }
-        public int QuestionCount { get; set; } = 9;
+        public int QuestionCount { get; set; }
 
         public bool DialogIsOpen { get; set; } = false;
 
@@ -49,12 +49,6 @@ namespace Kidcon.Client.Pages
                 Score++;
             }
             QuestionCount++;
-
-            if (QuestionCount >= 10)
-            {
-                // Create a modal or something to give them their score
-                return;
-            }
 
             StartTimerAsync();
         }

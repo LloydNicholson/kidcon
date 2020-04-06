@@ -17,7 +17,7 @@
         <QuestionFeedback Account="Account" Correct="Correct" QuestionCount="QuestionCount" Score="Score" />
     }
 
-    @if (QuestionCount == 10)
+    @if (QuestionCount >= 10)
     {
         DialogIsOpen = true;
         <QuestionFinishedModal DialogIsOpen="DialogIsOpen" Score="Score" />

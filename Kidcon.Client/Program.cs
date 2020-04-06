@@ -20,7 +20,7 @@ namespace Kidcon.Client
             {
                 return new HttpClient()
                 {
-                    BaseAddress = new Uri("http://localhost:5002")
+                    BaseAddress = new Uri("https://kidcon-api.azurewebsites.net")
                 };
             });
 
