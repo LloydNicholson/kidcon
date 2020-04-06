@@ -30,7 +30,11 @@ namespace Kidcon.WebApi
             services.AddControllers();
             services.AddDbContext<KidConDbContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddCors(action => action.AddPolicy("Open", builder => builder.AllowAnyHeader().AllowAnyOrigin()));
+            //services.AddCors(action =>
+            //    action.AddPolicy("Open",
+            //        builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()
+            //        )
+            //    );
 
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
@@ -46,6 +50,8 @@ namespace Kidcon.WebApi
             }
 
             //app.UseHttpsRedirection();
+
+            app.UseCors(action => action.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             app.UseRouting();
 
