@@ -8,8 +8,6 @@ using Kidcon.WebApi.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace Kidcon.WebApi.Controllers.v1
 {
     [Route("v1/account")]

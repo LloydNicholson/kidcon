@@ -28,13 +28,7 @@ namespace Kidcon.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<KidConDbContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
-
-            //services.AddCors(action =>
-            //    action.AddPolicy("Open",
-            //        builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()
-            //        )
-            //    );
+            services.AddDbContext<KidConDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
@@ -44,6 +38,7 @@ namespace Kidcon.WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            UpdateDatabase(app);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -61,6 +56,20 @@ namespace Kidcon.WebApi
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private void UpdateDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                // get your database context of the current app
+                using (var context = serviceScope.ServiceProvider.GetService<KidConDbContext>())
+                {
+                    // Call the migrate of the database provider to
+                    // apply all data migrations pending
+                    context.Database.Migrate();
+                }
+            }
         }
     }
 }

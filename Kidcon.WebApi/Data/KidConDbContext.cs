@@ -28,10 +28,17 @@ namespace Kidcon.WebApi.Data
             modelBuilder.Entity<User>();
             modelBuilder.Entity<Name>();
             modelBuilder.Entity<Classification>()
-                .HasMany(e => e.Accounts)
-                .WithOne(e => e.Classification);
+                .HasData(
+                new Classification[] {
+                    new Classification() { Id = 1, Type= "Asset" },
+                    new Classification() { Id = 2, Type = "Expense" },
+                    new Classification() { Id = 3, Type = "Drawings" },
+                    new Classification() { Id = 4, Type = "Capital" },
+                    new Classification() { Id = 5, Type = "Income" },
+                    new Classification() { Id = 6, Type = "Liability" },
+                });
             modelBuilder.Entity<Account>();
-            modelBuilder.Entity<Alternative>().HasOne(e => e.Account);
+            modelBuilder.Entity<Alternative>();
         }
     }
 }
