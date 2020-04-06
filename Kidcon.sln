@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kidcon.Shared", "Kidcon.Sha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kidcon.WebApi", "Kidcon.WebApi\Kidcon.WebApi.csproj", "{B865C43E-6DD7-456A-83E4-36A59B4488EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kidcon.Client", "Client\Kidcon.Client.csproj", "{9256759D-988D-4355-B7E6-90C5B58AE1BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kidcon.Client", "Kidcon.Client\Kidcon.Client.csproj", "{30212EF2-C2B7-4568-BB6B-4F32B85773E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +27,9 @@ Global
 		{B865C43E-6DD7-456A-83E4-36A59B4488EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B865C43E-6DD7-456A-83E4-36A59B4488EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B865C43E-6DD7-456A-83E4-36A59B4488EA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9256759D-988D-4355-B7E6-90C5B58AE1BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9256759D-988D-4355-B7E6-90C5B58AE1BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9256759D-988D-4355-B7E6-90C5B58AE1BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9256759D-988D-4355-B7E6-90C5B58AE1BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30212EF2-C2B7-4568-BB6B-4F32B85773E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30212EF2-C2B7-4568-BB6B-4F32B85773E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30212EF2-C2B7-4568-BB6B-4F32B85773E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30212EF2-C2B7-4568-BB6B-4F32B85773E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

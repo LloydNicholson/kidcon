@@ -1,0 +1,25 @@
+﻿@page "/questions"
+@inherits QuestionsBase
+
+<h2>Which side does the following account increase?</h2>
+@if (Account != null)
+{
+    <h3>@(Account.Name)</h3>
+    <span>
+        <MatButton Raised="true" Disabled="@(DidAnswer)" OnClick="@(() => Answered("debit"))">Debit</MatButton>
+    </span>
+    <span>
+        <MatButton Raised="true" Disabled="@(DidAnswer)" OnClick="@(() => Answered("credit"))">Credit</MatButton>
+    </span>
+
+    @if (DidAnswer)
+    {
+        <QuestionFeedback Account="Account" Correct="Correct" QuestionCount="QuestionCount" Score="Score" />
+    }
+
+    @if (QuestionCount == 10)
+    {
+        DialogIsOpen = true;
+        <QuestionFinishedModal DialogIsOpen="DialogIsOpen" Score="Score" />
+    }
+}
