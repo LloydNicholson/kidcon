@@ -2,11 +2,11 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Timers;
-using Kidcon.Client.Services;
-using Kidcon.Shared.Models;
+using ClientApp.Client.Services;
+using ClientApp.Shared.Models;
 using Microsoft.AspNetCore.Components;
 
-namespace Kidcon.Client.Pages
+namespace ClientApp.Client.Pages
 {
     public class QuestionsBase : ComponentBase
     {

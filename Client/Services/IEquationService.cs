@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Kidcon.Shared;
+using ClientApp.Shared;
 
-namespace Kidcon.Client.Services
+namespace ClientApp.Client.Services
 {
     public interface IEquationService
     {

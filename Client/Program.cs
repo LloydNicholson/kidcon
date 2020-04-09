@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Text;
-using Microsoft.AspNetCore.Blazor.Hosting;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using ClientApp.Client.Services;
 using System.Net.Http;
-using Kidcon.Client.Services;
 
-namespace Kidcon.Client
+namespace ClientApp.Client
 {
     public class Program
     {
@@ -20,12 +20,14 @@ namespace Kidcon.Client
             {
                 return new HttpClient()
                 {
-                    BaseAddress = new Uri("https://kidcon-api.azurewebsites.net")
+                    BaseAddress = new Uri("http://localhost:5002")
                 };
             });
 
-            builder.Services.AddSingleton<IEquationService, EquationService>();
-            builder.Services.AddSingleton<IAccountService, AccountService>();
+            //builder.Services.AddBaseAddressHttpClient();
+
+            builder.Services.AddScoped<IEquationService, EquationService>();
+            builder.Services.AddScoped<IAccountService, AccountService>();
 
             await builder.Build().RunAsync();
         }

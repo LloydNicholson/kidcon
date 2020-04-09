@@ -1,4 +1,4 @@
-@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -41,10 +41,10 @@ app {
             margin-left: 1.5rem;
         }
 
-        .main .top-row a:first-child {
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+.main .top-row a:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 .sidebar {
     background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
@@ -129,12 +129,12 @@ app {
     z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
 
 @media (max-width: 767.98px) {
     .main .top-row:not(.auth) {
@@ -181,72 +181,3 @@ app {
         display: block;
     }
 }
-
-.body-container {
-    margin: 0 1rem 3rem 1rem;
-}
-
-.body-header {
-    margin: 28px 0 0 0;
-    font-family: Roboto, sans-serif;
-    text-transform: uppercase;
-}
-
-.body-paragraph {
-    margin: 1rem 0;
-    font-size: 18px;
-    line-height: 2rem;
-}
-
-.question-display-block {
-    display: block;
-    background-color: var(--block-color);
-    border: 1px solid black;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-    box-shadow: 0 3px 5px 0 var(--initial-shadow-color);
-}
-
-    .question-display-block:hover,
-    .question-display-block:active,
-    .question-display-block:focus {
-        box-shadow: 0 5px 20px 0 var(--hover-shadow-color);
-        transform: translateY(-2px);
-        transition: box-shadow 500ms, transform 500ms;
-    }
-
-a {
-    text-decoration: none;
-    color: rgba(145, 61, 52, 0.79);
-    font-weight: bold;
-}
-
-    a:hover,
-    a:focus,
-    a:active {
-        color: #9c716e;
-        font-weight: bolder;
-    }
-
-.adelic {
-    display: flex;
-}
-
-.account-side {
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: var(--block-color);
-    box-shadow: 0 2px 0 0 var(--initial-shadow-color);
-    margin-right: 10px;
-    padding: 10px;
-    width: 200px;
-}
-
-    .account-side:hover,
-    .account-side:focus,
-    .account-side:active {
-        box-shadow: 0 2px 10px 0 var(--hover-shadow-color);
-        transform: translateY(-2px);
-        transition: box-shadow 500ms, transform 500ms;
-    }

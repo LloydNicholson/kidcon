@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Kidcon.Shared.Models;
+using ClientApp.Shared.Models;
 
-namespace Kidcon.Client.Services
+namespace ClientApp.Client.Services
 {
     public interface IAccountService
     {

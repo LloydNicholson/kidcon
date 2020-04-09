@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 
-namespace Kidcon.Client.Pages
+namespace ClientApp.Client.Pages
 {
     public class TransactionsBase : ComponentBase
     {

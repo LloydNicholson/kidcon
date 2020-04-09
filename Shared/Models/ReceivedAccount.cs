@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Kidcon.Shared.Models
+namespace ClientApp.Shared.Models
 {
     public class ReceivedAccount
     {

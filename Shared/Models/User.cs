@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Kidcon.Shared.Models
+namespace ClientApp.Shared.Models
 {
     public class User
     {

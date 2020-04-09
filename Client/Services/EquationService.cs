@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Net.Http;
-using Kidcon.Shared;
+using ClientApp.Shared;
 using Microsoft.AspNetCore.Components;
-using System.Text.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-namespace Kidcon.Client.Services
+namespace ClientApp.Client.Services
 {
     public class EquationService : IEquationService
     {

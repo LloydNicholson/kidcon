@@ -1,17 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Kidcon.Server.Services;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Linq;
+using ClientApp.Server.Data;
+using Microsoft.EntityFrameworkCore;
 
-namespace Kidcon.Server
+namespace ClientApp.Server
 {
     public class Startup
     {
@@ -26,15 +24,13 @@ namespace Kidcon.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
-            services.AddServerSideBlazor()
-                .AddCircuitOptions(options =>
-                {
-                    options.DetailedErrors = true;
-                });
 
-            services.AddHttpClient<IEquationService, EquationService>(options => options.BaseAddress = new Uri("http://localhost:5002"));
-            services.AddHttpClient<IAccountService, AccountService>(options => options.BaseAddress = new Uri("http://localhost:5002"));
+            services.AddControllersWithViews().AddNewtonsoftJson(s =>
+            {
+                s.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+            });
+            services.AddDbContext<KidConDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +39,7 @@ namespace Kidcon.Server
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseWebAssemblyDebugging();
             }
             else
             {
@@ -51,15 +48,18 @@ namespace Kidcon.Server
                 app.UseHsts();
             }
 
-            //app.UseHttpsRedirection();
+            app.UseCors(config => config.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
+            app.UseHttpsRedirection();
+            app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
 
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapBlazorHub();
-                endpoints.MapFallbackToPage("/_Host");
+                endpoints.MapControllers();
+                endpoints.MapFallbackToFile("index.html");
             });
         }
     }

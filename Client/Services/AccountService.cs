@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Kidcon.Shared.Models;
+using ClientApp.Shared.Models;
 
-namespace Kidcon.Client.Services
+namespace ClientApp.Client.Services
 {
     public class AccountService : IAccountService
     {
@@ -17,10 +18,7 @@ namespace Kidcon.Client.Services
 
         public async Task<Account> GetRandomAccount()
         {
-            var res = await _httpClient.GetStreamAsync("v1/account");
-
-            return await JsonSerializer.DeserializeAsync<Account>
-                (res, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            return await _httpClient.GetFromJsonAsync<Account>("v1/account");
         }
     }
 }
