@@ -6,11 +6,11 @@
             <MatHeadline6 class="demo-mat-card-clean-margin">
                 @if (Correct)
                 {
-                    <span><MatIcon Icon="thumb_up"></MatIcon> That's correct!</span>
+                    <span style="color: green"><MatIcon Icon="thumb_up"></MatIcon> That's correct!</span>
                 }
                 else
                 {
-                    <span><MatIcon Icon="thumb_down"></MatIcon> Incorrect.</span>
+                    <span style="color: red"><MatIcon Icon="thumb_down"></MatIcon> Incorrect.</span>
                 }
             </MatHeadline6>
         </div>
@@ -19,16 +19,16 @@
             @if (Correct)
             {
                 <p>
-                    The <strong>@(Account.Name)</strong> account is classified
-                    as @(AOrAn()) <strong>@(Account.Classification.Type) account</strong>.
+                    The <b>@(Account.Name)</b> account is classified
+                    as @(AOrAn()) <b>@(Account.Classification.Type) account</b>.
                 </p>
             }
             else
             {
                 <p>
-                    The <strong>@(Account.Name)</strong> account increases on the
+                    The <b>@(Account.Name)</b> account increases on the
                     <strong>@(Account.IncreasingSide)</strong> side because it is classified
-                    as @(AOrAn()) <strong>@(Account.Classification.Type) account</strong>.
+                    as @(AOrAn()) <b>@(Account.Classification.Type) account</b>.
                 </p>
             }
         </MatBody1>
@@ -51,12 +51,6 @@
     public int QuestionCount { get; set; }
     [Parameter]
     public double Time { get; set; }
-
-    //protected override void OnAfterRender(bool firstRender)
-    //{
-    //    Console.WriteLine("After Render");
-    //    Console.WriteLine(firstRender);
-    //}
 
     public virtual string AOrAn()
     {

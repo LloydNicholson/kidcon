@@ -10,8 +10,13 @@ using Microsoft.Extensions.Logging;
 
 namespace ClientApp.Client.Pages
 {
-    public partial class Questions
+    public partial class Questions : ComponentBase, IDisposable
     {
+        Timer timer = new Timer()
+        {
+            Interval = 600
+        };
+
         [Inject]
         public IAccountService AccountService { get; set; }
 
@@ -29,15 +34,22 @@ namespace ClientApp.Client.Pages
 
         protected override async Task OnInitializedAsync()
         {
+            timer.Elapsed += TimerOnElapsed;
+
             await GetAccounts();
             GetAccount();
         }
 
-        //protected override void OnAfterRender(bool firstRender)
-        //{
-        //    Console.WriteLine("After Render QuestionsBase");
-        //    Console.WriteLine(firstRender);
-        //}
+        private void TimerOnElapsed(object sender, ElapsedEventArgs e)
+        {
+            Time -= 0.1;
+            StateHasChanged();
+            if (Time <= 0)
+            {
+                timer.Stop();
+                GetAccount();
+            }
+        }
 
         protected async Task GetAccounts()
         {
@@ -65,18 +77,7 @@ namespace ClientApp.Client.Pages
             }
             QuestionCount++;
 
-            StartTimerAsync();
-        }
-
-        public async void StartTimerAsync()
-        {
-            while (Time > 0)
-            {
-                StateHasChanged();
-                await Task.Delay(500);
-                Time -= 0.1;
-            }
-            GetAccount();
+            timer.Start();
         }
 
         public async Task RestartGame()
@@ -84,6 +85,14 @@ namespace ClientApp.Client.Pages
             Score = 0;
             QuestionCount = 0;
             await GetAccounts();
+        }
+
+        public void Dispose()
+        {
+            if (timer != null)
+            {
+                timer.Dispose();
+            }
         }
     }
 }
