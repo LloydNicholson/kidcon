@@ -7,6 +7,7 @@ using ClientApp.Server.Data;
 using ClientApp.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace ClientApp.Server.Controllers.v1
 {
@@ -74,18 +75,26 @@ namespace ClientApp.Server.Controllers.v1
         }
 
         [HttpGet]
-        public IActionResult GetRandomAccount()
+        public IActionResult GetRandomAccounts()
         {
             using var dbContext = OpenDbContext();
 
-            var accounts = dbContext.Accounts.AsNoTracking()
+            var existingAccounts = dbContext.Accounts.AsNoTracking()
                 .Include(a => a.Classification)
                 .Include(a => a.Alternatives)
                 .ToArray();
 
-            var randomAccount = accounts[Helpers.Helpers.GetRandomNumber(accounts.Length)];
+            var accounts = new List<Account>();
 
-            return Ok(randomAccount);
+            while (accounts.Count < 10)
+            {
+                var randomAccount = existingAccounts[Helpers.Helpers.GetRandomNumber(existingAccounts.Length)];
+                accounts.Add(randomAccount);
+
+                accounts = accounts.Distinct().ToList();
+            }
+
+            return Ok(accounts);
         }
 
         [HttpGet]

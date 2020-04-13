@@ -8,11 +8,14 @@ using Microsoft.Extensions.Hosting;
 using System.Linq;
 using ClientApp.Server.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace ClientApp.Server
 {
     public class Startup
     {
+        public static readonly ILoggerFactory EFLoggerFactory = LoggerFactory.Create(builder => { builder.AddConsole(); });
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,12 +28,12 @@ namespace ClientApp.Server
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllersWithViews().AddNewtonsoftJson(s =>
+            services.AddControllersWithViews().AddNewtonsoftJson(config =>
             {
-                s.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                config.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 
             });
-            services.AddDbContext<KidConDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<KidConDbContext>(options => options.UseLoggerFactory(EFLoggerFactory).UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,9 +51,7 @@ namespace ClientApp.Server
                 app.UseHsts();
             }
 
-            app.UseCors(config => config.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
 

@@ -1,0 +1,43 @@
+﻿@using ClientApp.Shared.Models
+
+<MatCard>
+    <MatCardContent Class="m-2">
+        <MatHeadline6>
+            <h3>Which side does the following account increase?</h3>
+        </MatHeadline6>
+
+        <MatBody1>
+            @if (Account != null)
+            {
+                <h3>@(Account.Name)</h3>
+                <div class="row justify-content-between m-2">
+                    <div>
+                        <span>
+                            <MatButton Raised="true" Disabled="DidAnswer" OnClick="@(() => Answer.InvokeAsync("debit"))">Debit</MatButton>
+                        </span>
+                        <span>
+                            <MatButton Raised="true" Disabled="DidAnswer" OnClick="@(() => Answer.InvokeAsync("credit"))">Credit</MatButton>
+                        </span>
+                    </div>
+                    <div>
+                        <span><MatIcon Icon="check"></MatIcon> @Score</span>
+                        <span><MatIcon Icon="question_answer"></MatIcon> @QuestionCount /10</span>
+                    </div>
+                </div>
+            }
+        </MatBody1>
+    </MatCardContent>
+</MatCard>
+
+@code {
+    [Parameter]
+    public Account Account { get; set; }
+    [Parameter]
+    public bool DidAnswer { get; set; }
+    [Parameter]
+    public int Score { get; set; }
+    [Parameter]
+    public int QuestionCount { get; set; }
+    [Parameter]
+    public EventCallback<string> Answer { get; set; }
+}

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -16,9 +17,9 @@ namespace ClientApp.Client.Services
             _httpClient = httpClient;
         }
 
-        public async Task<Account> GetRandomAccount()
+        public async Task<List<Account>> GetRandomAccounts()
         {
-            return await _httpClient.GetFromJsonAsync<Account>("v1/account");
+            return await _httpClient.GetFromJsonAsync<List<Account>>("v1/account");
         }
     }
 }

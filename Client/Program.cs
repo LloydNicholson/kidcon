@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using ClientApp.Client.Services;
 using System.Net.Http;
+using Microsoft.Extensions.Logging;
 
 namespace ClientApp.Client
 {
@@ -16,18 +17,10 @@ namespace ClientApp.Client
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
-            builder.Services.AddScoped(s =>
-            {
-                return new HttpClient()
-                {
-                    BaseAddress = new Uri("http://localhost:5002")
-                };
-            });
+            builder.Services.AddBaseAddressHttpClient();
 
-            //builder.Services.AddBaseAddressHttpClient();
-
-            builder.Services.AddScoped<IEquationService, EquationService>();
-            builder.Services.AddScoped<IAccountService, AccountService>();
+            builder.Services.AddSingleton<IEquationService, EquationService>();
+            builder.Services.AddSingleton<IAccountService, AccountService>();
 
             await builder.Build().RunAsync();
         }
