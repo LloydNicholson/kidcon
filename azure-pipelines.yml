@@ -31,11 +31,6 @@ steps:
   inputs:
     script: 'dotnet tool install --global dotnet-ef'
 
-- task: CmdLine@2
-  displayName: 'Generate DB Script...'
-  inputs:
-    script: 'dotnet ef migrations script -i -o $(Build.ArtifactStagingDirectory)\migrate.sql --project $(myproject)'
-
 - task: DotNetCoreCLI@2
   displayName: 'Publishing App...'
   inputs:
