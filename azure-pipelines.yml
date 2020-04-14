@@ -14,6 +14,12 @@ variables:
   myproject: 'Server/ClientApp.Server.csproj'
 
 steps:
+- task: NuGetCommand@2
+  inputs:
+    command: 'restore'
+    restoreSolution: '**/*.sln'
+    feedsToUse: 'select'
+    vstsFeed: '117680fe-7cc5-4041-9355-17258b8fb2b1'
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
