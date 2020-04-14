@@ -9,6 +9,7 @@ using System.Linq;
 using ClientApp.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace ClientApp.Server
 {
@@ -27,6 +28,15 @@ namespace ClientApp.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Events.OnRedirectToLogin =
+                options.Events.OnRedirectToAccessDenied = context =>
+                {
+                    context.Response.StatusCode = 401;
+                    return Task.CompletedTask;
+                };
+            });
 
             services.AddControllersWithViews().AddNewtonsoftJson(config =>
             {
@@ -62,7 +72,6 @@ namespace ClientApp.Server
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapDefaultControllerRoute();
                 endpoints.MapFallbackToFile("index.html");
             });
         }
