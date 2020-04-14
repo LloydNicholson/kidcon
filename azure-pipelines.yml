@@ -32,9 +32,9 @@ steps:
     script: 'dotnet tool install --global dotnet-ef'
 
 - task: CmdLine@2
-  displayName: 'Updating Database...'
+  displayName: 'Generate DB Script...'
   inputs:
-    script: 'dotnet ef database update --project $(myproject)'
+    script: 'dotnet ef migrations script -i -o $(Build.ArtifactStagingDirectory)\migrate.sql --project $(myproject)'
 
 - task: DotNetCoreCLI@2
   displayName: 'Publishing App...'
