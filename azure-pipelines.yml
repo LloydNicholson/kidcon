@@ -26,14 +26,8 @@ steps:
     solution: '**/*.sln'
     selectOrConfig: 'select'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Building project'
-  inputs:
-    command: 'build'
-    projects: '$(myproject)'
-
-# - script: dotnet build --configuration $(buildConfiguration)
-#   displayName: 'Building for $(buildConfiguration)'
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'Building for $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
   inputs:
