@@ -17,12 +17,17 @@ namespace ClientApp.Client
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
-            builder.Services.AddBaseAddressHttpClient();
-
-            builder.Services.AddSingleton<IEquationService, EquationService>();
-            builder.Services.AddSingleton<IAccountService, AccountService>();
+            ConfigureServices(builder.Services);
 
             await builder.Build().RunAsync();
+        }
+
+        private static void ConfigureServices(IServiceCollection services)
+        {
+            services.AddBaseAddressHttpClient();
+            services.AddScoped<IHttpService, HttpService>();
+            services.AddScoped<IEquationService, EquationService>();
+            services.AddScoped<IAccountService, AccountService>();
         }
     }
 }

@@ -10,16 +10,23 @@ namespace ClientApp.Client.Services
 {
     public class AccountService : IAccountService
     {
-        public readonly HttpClient _httpClient;
+        public readonly IHttpService _httpService;
+        private string url = "v1/account";
 
-        public AccountService(HttpClient httpClient)
+        public AccountService(IHttpService httpService)
         {
-            _httpClient = httpClient;
+            _httpService = httpService;
         }
 
         public async Task<List<Account>> GetRandomAccounts()
         {
-            return await _httpClient.GetFromJsonAsync<List<Account>>("v1/account");
+            var response = await _httpService.Get<List<Account>>(url);
+            if (!response.Success)
+            {
+                throw new ApplicationException(response.HttpResponseMessage.Content.ToString());
+            }
+
+            return response.Response;
         }
     }
 }
