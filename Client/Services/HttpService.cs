@@ -22,16 +22,34 @@ namespace ClientApp.Client.Services
 
         public async Task<HttpResponseWrapper<T>> Get<T>(string url)
         {
-            var responseHTTP = await _httpClient.GetFromJsonAsync<HttpResponseMessage>(url);
+            try
+            {
+                var responseHTTP = await _httpClient.GetAsync(url);
 
-            if (responseHTTP.IsSuccessStatusCode)
-            {
-                var response = await Deserialize<T>(responseHTTP, defaultJsonSerializerOptions);
-                return new HttpResponseWrapper<T>(response, true, responseHTTP);
+                if (responseHTTP.IsSuccessStatusCode)
+                {
+                    var response = await Deserialize<T>(responseHTTP, defaultJsonSerializerOptions);
+                    return new HttpResponseWrapper<T>(response, true, responseHTTP);
+                }
+                else
+                {
+                    return new HttpResponseWrapper<T>(default, false, responseHTTP);
+                }
             }
-            else
+            catch (HttpRequestException) // Non success
             {
-                return new HttpResponseWrapper<T>(default, false, responseHTTP);
+                Console.WriteLine("An error occurred.");
+                throw;
+            }
+            catch (NotSupportedException) // When content type is not valid
+            {
+                Console.WriteLine("The content type is not supported.");
+                throw;
+            }
+            catch (JsonException) // Invalid JSON
+            {
+                Console.WriteLine("Invalid JSON.");
+                throw;
             }
         }
 
