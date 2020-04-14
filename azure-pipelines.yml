@@ -14,29 +14,20 @@ variables:
   myproject: 'Server/ClientApp.Server.csproj'
 
 steps:
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '3.1.x'
-    includePreviewVersions: false
-
 - task: NuGetCommand@2
   displayName: 'Restoring NuGet packages'
   inputs:
     command: 'restore'
     restoreSolution: '**/*.sln'
+
 - script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+  displayName: 'Building for $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Publishing App...'
   inputs:
     command: 'publish'
-    publishWebProjects: false
-    projects: '$(myproject)'
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --self-contained --runtime win-x86'
-    zipAfterPublish: false
-    modifyOutputPath: false
+    publishWebProjects: true
+    arguments: '-c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory) --self-contained -r win-x86)'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publishing Build Artifacts...'
