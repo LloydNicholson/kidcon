@@ -85,6 +85,7 @@ namespace ClientApp.Client.Pages
             Score = 0;
             QuestionCount = 0;
             await GetAccounts();
+            GetAccount();
         }
 
         public void Dispose()

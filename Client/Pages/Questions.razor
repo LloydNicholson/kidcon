@@ -21,6 +21,7 @@
                 @if (QuestionCount >= 10)
                 {
                     DialogIsOpen = true;
+                    timer.Stop();
                     <QuestionFinishedModal Restart="RestartGame" DialogIsOpen="DialogIsOpen" Score="Score" />
                 }
             }
