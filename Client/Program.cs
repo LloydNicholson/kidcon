@@ -24,7 +24,14 @@ namespace ClientApp.Client
 
         private static void ConfigureServices(IServiceCollection services)
         {
-            services.AddBaseAddressHttpClient();
+            services.AddScoped(e =>
+            {
+                return new HttpClient()
+                {
+                    BaseAddress = new Uri("https://kidcon-blazor.azurewebsites.net")
+                };
+            });
+
             services.AddScoped<IHttpService, HttpService>();
             services.AddScoped<IEquationService, EquationService>();
             services.AddScoped<IAccountService, AccountService>();
