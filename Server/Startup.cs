@@ -62,6 +62,7 @@ namespace ClientApp.Server
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapDefaultControllerRoute();
                 endpoints.MapFallbackToFile("index.html");
             });
         }
