@@ -20,13 +20,17 @@ steps:
     version: '3.1.x'
     performMultiLevelLookup: true
 
-- task: VSBuild@1
+- task: NuGetRestore@1
+  displayName: 'Restoring packages'
   inputs:
-    solution: '**\*.sln'
-    vsVersion: '16.0'
-    platform: 'win-x86'
-    clean: true
-    restoreNugetPackages: true
+    solution: '**/*.sln'
+    selectOrConfig: 'select'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Building project'
+  inputs:
+    command: 'build'
+    projects: '$(myproject)'
 
 # - script: dotnet build --configuration $(buildConfiguration)
 #   displayName: 'Building for $(buildConfiguration)'
