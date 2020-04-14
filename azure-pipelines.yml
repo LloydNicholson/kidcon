@@ -24,7 +24,6 @@ steps:
   displayName: 'Restoring packages'
   inputs:
     solution: '**/*.sln'
-    selectOrConfig: 'select'
 
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'Building for $(buildConfiguration)'
