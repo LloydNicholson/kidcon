@@ -37,7 +37,7 @@ namespace ClientApp.Server
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, KidConDbContext dbContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -51,7 +51,7 @@ namespace ClientApp.Server
                 app.UseHsts();
             }
 
-            dbContext.Database.Migrate();
+            //dbContext.Database.Migrate();
 
             app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
