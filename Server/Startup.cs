@@ -27,16 +27,25 @@ namespace ClientApp.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<KidConDbContext>(options => options.UseLoggerFactory(EFLoggerFactory).UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddControllersWithViews().AddNewtonsoftJson(config =>
             {
                 config.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
-            services.AddDbContext<KidConDbContext>(options => options.UseLoggerFactory(EFLoggerFactory).UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddResponseCompression(opts =>
+            {
+                opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+                    new[] { "application/octet-stream" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseResponseCompression();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
