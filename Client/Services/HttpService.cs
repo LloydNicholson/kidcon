@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace ClientApp.Client.Services
 
         public async Task<HttpResponseWrapper<T>> Get<T>(string url)
         {
-            var responseHTTP = await _httpClient.GetAsync(url);
+            var responseHTTP = await _httpClient.GetFromJsonAsync<HttpResponseMessage>(url);
 
             if (responseHTTP.IsSuccessStatusCode)
             {
@@ -38,7 +39,7 @@ namespace ClientApp.Client.Services
         {
             var dataJson = JsonSerializer.Serialize(data);
             var stringContent = new StringContent(dataJson, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync(url, stringContent);
+            var response = await _httpClient.PostAsJsonAsync(url, stringContent);
 
             return new HttpResponseWrapper<object>(null, response.IsSuccessStatusCode, response);
         }
