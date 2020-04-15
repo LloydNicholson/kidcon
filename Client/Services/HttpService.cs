@@ -36,19 +36,9 @@ namespace ClientApp.Client.Services
                     return new HttpResponseWrapper<T>(default, false, responseHTTP);
                 }
             }
-            catch (HttpRequestException) // Non success
+            catch (Exception e) // Non success
             {
-                Console.WriteLine("An error occurred.");
-                throw;
-            }
-            catch (NotSupportedException) // When content type is not valid
-            {
-                Console.WriteLine("The content type is not supported.");
-                throw;
-            }
-            catch (JsonException) // Invalid JSON
-            {
-                Console.WriteLine("Invalid JSON.");
+                Console.WriteLine($"An error occurred. {e}");
                 throw;
             }
         }
