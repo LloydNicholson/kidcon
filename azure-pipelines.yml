@@ -33,7 +33,7 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: true
-    arguments: '-c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory) --self-contained -r win-x86'
+    arguments: '--project $(myproject) -c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory) --self-contained -r win-x86'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publishing Build Artifacts...'
