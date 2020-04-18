@@ -25,10 +25,11 @@ namespace ClientApp.Client.Services
             try
             {
                 var responseHTTP = await _httpClient.GetAsync(url);
+                Console.WriteLine(responseHTTP);
 
                 if (responseHTTP.IsSuccessStatusCode)
                 {
-                    var response = await Deserialize<T>(responseHTTP, defaultJsonSerializerOptions);
+                    var response = await responseHTTP.Content.ReadFromJsonAsync<T>();
                     return new HttpResponseWrapper<T>(response, true, responseHTTP);
                 }
                 else
