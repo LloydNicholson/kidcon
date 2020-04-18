@@ -52,7 +52,7 @@ namespace ClientApp.Server
 
             //dbContext.Database.Migrate();
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
 

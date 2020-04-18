@@ -25,7 +25,6 @@ namespace ClientApp.Client.Services
             try
             {
                 var responseHTTP = await _httpClient.GetAsync(url);
-                Console.WriteLine(responseHTTP);
 
                 if (responseHTTP.IsSuccessStatusCode)
                 {

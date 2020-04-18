@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace ClientApp.Server.Controllers.v1
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("v1/account")]
     public class AccountController : ControllerBase
     {
         private readonly KidConDbContext _dbContext;
