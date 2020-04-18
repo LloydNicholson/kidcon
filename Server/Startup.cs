@@ -14,7 +14,7 @@ namespace ClientApp.Server
 {
     public class Startup
     {
-        public static readonly ILoggerFactory EFLoggerFactory = LoggerFactory.Create(builder => { builder.AddConsole(); });
+        //public static readonly ILoggerFactory EFLoggerFactory = LoggerFactory.Create(builder => { builder.AddConsole(); });
 
         public Startup(IConfiguration configuration)
         {
@@ -27,7 +27,7 @@ namespace ClientApp.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<KidConDbContext>(options => options.UseLoggerFactory(EFLoggerFactory).UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<KidConDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllersWithViews().AddNewtonsoftJson(config =>
             {
@@ -53,10 +53,12 @@ namespace ClientApp.Server
             //dbContext.Database.Migrate();
 
             //app.UseHttpsRedirection();
-            app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
+            app.UseBlazorFrameworkFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
