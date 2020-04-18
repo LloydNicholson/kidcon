@@ -17,6 +17,7 @@ namespace ClientApp.Client
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
+            builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             ConfigureServices(builder.Services);
 
             await builder.Build().RunAsync();
@@ -24,8 +25,6 @@ namespace ClientApp.Client
 
         private static void ConfigureServices(IServiceCollection services)
         {
-            services.AddBaseAddressHttpClient();
-
             services.AddScoped<IHttpService, HttpService>();
             services.AddScoped<IEquationService, EquationService>();
             services.AddScoped<IAccountService, AccountService>();
