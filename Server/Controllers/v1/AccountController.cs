@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
 using ClientApp.Server.Data;
 using ClientApp.Shared.Models;
@@ -12,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace ClientApp.Server.Controllers.v1
 {
     [ApiController]
-    [Route("v1/account")]
+    [Route("[controller]")]
     public class AccountController : ControllerBase
     {
         private readonly KidConDbContext _dbContext;
