@@ -28,7 +28,7 @@ namespace ClientApp.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<KidConDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-
+            
             services.AddControllersWithViews().AddNewtonsoftJson(config =>
             {
                 config.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
