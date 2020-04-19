@@ -24,7 +24,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: 'Preview4/**/*.csproj'
+    projects: 'Preview4/BlazorHostedPreview4/**/*.csproj'
 
 - task: DotNetCoreCLI@2
   inputs:
