@@ -11,7 +11,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  myproject: 'Server/ClientApp.Server.csproj'
+  myproject: 'Preview4/BlazorHostedPreview4/Server/ClientApp.Server.csproj'
 
 steps:
 - task: UseDotNet@2
@@ -24,7 +24,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: '**/*.csproj'
+    projects: 'Preview4/**/*.csproj'
 
 - task: DotNetCoreCLI@2
   inputs:
