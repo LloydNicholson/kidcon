@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
 using ClientApp.Server.Data;
 using ClientApp.Shared.Models;
@@ -23,7 +22,7 @@ namespace ClientApp.Server.Controllers.v1
         }
 
         [HttpPost]
-        public async Task<IActionResult> SeedAccounts([FromBody] List<ReceivedAccount> accounts)
+        public async Task<ActionResult<List<Account>>> SeedAccounts([FromBody] List<ReceivedAccount> accounts)
         {
             using var dbContext = OpenDbContext();
             var existingAccounts = await dbContext.Accounts.AsNoTracking()
@@ -75,14 +74,14 @@ namespace ClientApp.Server.Controllers.v1
         }
 
         [HttpGet]
-        public IActionResult GetRandomAccounts()
+        public async Task<IActionResult> GetRandomAccounts()
         {
             using var dbContext = OpenDbContext();
 
-            var existingAccounts = dbContext.Accounts.AsNoTracking()
+            var existingAccounts = await dbContext.Accounts.AsNoTracking()
                 .Include(a => a.Classification)
                 .Include(a => a.Alternatives)
-                .ToArray();
+                .ToArrayAsync();
 
             var accounts = new List<Account>();
 
@@ -99,13 +98,13 @@ namespace ClientApp.Server.Controllers.v1
 
         [HttpGet]
         [Route("alternatives")]
-        public IActionResult GetAlternatives()
+        public async Task<ActionResult<List<Alternative>>> GetAlternatives()
         {
             using var dbContext = OpenDbContext();
 
-            var alts = dbContext.Alternatives.AsNoTracking()
+            var alts = await dbContext.Alternatives.AsNoTracking()
                 .Include(a => a.Account)
-                .ToArray();
+                .ToArrayAsync();
 
             return Ok(alts);
         }

@@ -9,16 +9,18 @@ namespace ClientApp.Client.Services
 {
     public class EquationService : IEquationService
     {
-        public readonly HttpClient _httpClient;
+        public readonly IHttpService _httpService;
 
-        public EquationService(HttpClient httpClient)
+        public EquationService(IHttpService httpService)
         {
-            _httpClient = httpClient;
+            _httpService = httpService;
         }
 
         public async Task<string> GetRandomName()
         {
-            return await _httpClient.GetStringAsync("v1/name");
+            var response = await _httpService.Get<string>("v1/name");
+
+            return response.Response;
         }
 
         //  currentAccount: Classification;
