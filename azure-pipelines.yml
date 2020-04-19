@@ -11,6 +11,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  myproject: 'Server/ClientApp.Server.csproj'
 
 steps:
 - task: UseDotNet@2
@@ -29,7 +30,8 @@ steps:
   displayName: 'Publishing KidCon'
   inputs:
     command: 'publish'
-    publishWebProjects: true
+    publishWebProjects: false
+    projects: '$(myproject)'
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --self-contained --runtime win-x86'
 
 - task: PublishBuildArtifacts@1
