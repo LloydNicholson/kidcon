@@ -5,6 +5,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <ActiveDebugProfile>IIS Express</ActiveDebugProfile>
-    <NameOfLastUsedPublishProfile>ClientAppKidConTest - Web Deploy</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>ClientAppKidCon - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
