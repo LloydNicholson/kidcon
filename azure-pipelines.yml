@@ -1,0 +1,30 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- master
+
+pool:
+  vmImage: 'macOS-10.15'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: 'Building KidCon'
+  inputs:
+    command: 'build'
+    projects: 'Server/**/*.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publishing KidCon'
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --self-contained --runtime win-x86'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Build Artifacts'
