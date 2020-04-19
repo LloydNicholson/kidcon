@@ -29,11 +29,10 @@ namespace ClientApp.Server
         {
             services.AddDbContext<KidConDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             
-            services.AddControllersWithViews()
-                    .AddNewtonsoftJson(config =>
-                    {
-                       config.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-                    });
+            services.AddControllersWithViews().AddNewtonsoftJson(config =>
+            {
+                config.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,12 +42,6 @@ namespace ClientApp.Server
             {
                 app.UseDeveloperExceptionPage();
                 app.UseWebAssemblyDebugging();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                //app.UseHsts();
             }
 
             //dbContext.Database.Migrate();
@@ -61,7 +54,7 @@ namespace ClientApp.Server
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapDefaultControllerRoute();
+                endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
             });
         }
