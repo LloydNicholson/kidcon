@@ -57,8 +57,6 @@ namespace ClientApp.Server
             app.UseBlazorFrameworkFiles();
 
             app.UseRouting();
-            app.UseAuthentication();
-            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
