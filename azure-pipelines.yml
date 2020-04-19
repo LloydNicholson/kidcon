@@ -17,7 +17,7 @@ steps:
   displayName: 'Building KidCon'
   inputs:
     command: 'build'
-    projects: 'Server/**/*.csproj'
+    projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
   displayName: 'Publishing KidCon'
