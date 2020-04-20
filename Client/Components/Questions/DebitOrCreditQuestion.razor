@@ -4,15 +4,15 @@
     <div class="row justify-content-between m-2">
         <div>
             <span>
-                <MatButton Raised="true" Disabled="DidAnswer" OnClick="@(() => Answered.InvokeAsync("debit"))">Debit</MatButton>
+                <button class="btn btn-primary" disabled="@DidAnswer" @onclick="@(() => Answered.InvokeAsync("debit"))">Debit</button>
             </span>
             <span>
-                <MatButton Raised="true" Disabled="DidAnswer" OnClick="@(() => Answered.InvokeAsync("credit"))">Credit</MatButton>
+                <button class="btn btn-primary" disabled="@DidAnswer" @onclick="@(() => Answered.InvokeAsync("credit"))">Credit</button>
             </span>
         </div>
         <div>
-            <span><MatIcon Icon="check"></MatIcon> @Score</span>
-            <span><MatIcon Icon="question_answer"></MatIcon> @QuestionCount /10</span>
+            <span><i class="oi oi-circle-check"></i> @Score</span>
+            <span><i class="oi oi-comment-square"></i> @QuestionCount /10</span>
         </div>
     </div>
 }

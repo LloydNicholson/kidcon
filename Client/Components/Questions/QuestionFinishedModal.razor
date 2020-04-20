@@ -5,24 +5,25 @@
 
         @if (Score > 1 && Score <= 5)
         {
-            <div>Ah, you achieved @Score / 10! Better luck next time!</div>
+            <p>Ah, you achieved @Score / 10! Better luck next time!</p>
         }
         else if (Score > 5 && Score < 10)
         {
-            <div>Well done, you achieved @Score / 10! Wow pretty good!</div>
+            <p>Well done, you achieved @Score / 10! Wow pretty good!</p>
         }
         else if (Score == 10)
         {
-            <div>Amazing, you achieved @Score / 10! Brilliant</div>
+            <p>Amazing, you achieved @Score / 10! Brilliant</p>
         }
         else
         {
-            <div>Wat gebeur!</div>
+            <p>Wat gebeur!</p>
         }
 
     </MatDialogContent>
     <MatDialogActions>
         <MatButton OnClick="@(() => Restart.InvokeAsync(true))">Restart</MatButton>
+        <MatButton OnClick="@(() => Restart.InvokeAsync(false))">Cancel</MatButton>
     </MatDialogActions>
 </MatDialog>
 

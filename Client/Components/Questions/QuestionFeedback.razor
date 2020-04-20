@@ -2,37 +2,36 @@
 
 <div class="card">
     <div>
-        <div>
-            <h2 class="card-header">
-                @if (Correct)
-                {
-                    <span style="color: green"><i class="thumb_up"></i> That's correct!</span>
-                }
-                else
-                {
-                    <span style="color: red"><i class="thumb_down"></i> Incorrect.</span>
-                }
-            </h2>
-        </div>
-
-        <div class="card-body">
+        <h2 class="card-header">
             @if (Correct)
             {
-                <p>
-                    The <b>@(Account.Name)</b> account is classified
-                    as @(AOrAn()) <b>@(Account.Classification.Type) account</b>.
-                </p>
+                <span style="color: green"><i class="oi oi-thumb-up"></i> That's correct!</span>
             }
             else
             {
-                <p>
-                    The <b>@(Account.Name)</b> account increases on the
-                    <strong>@(Account.IncreasingSide)</strong> side because it is classified
-                    as @(AOrAn()) <b>@(Account.Classification.Type) account</b>.
-                </p>
+                <span style="color: red"><i class="oi oi-thumb-down"></i> Incorrect.</span>
             }
-        </div>
+        </h2>
     </div>
+
+    <div class="card-body">
+        @if (Correct)
+        {
+            <p>
+                The <b>@(Account.Name)</b> account is classified
+                as @(AOrAn()) <b>@(Account.Classification.Type) account</b>.
+            </p>
+        }
+        else
+        {
+            <p>
+                The <b>@(Account.Name)</b> account increases on the
+                <strong>@(Account.IncreasingSide)</strong> side because it is classified
+                as @(AOrAn()) <b>@(Account.Classification.Type) account</b>.
+            </p>
+        }
+    </div>
+
 
     @if (Time > 0)
     {

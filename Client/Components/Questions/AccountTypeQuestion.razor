@@ -2,44 +2,48 @@
 
 @if (Account != null)
 {
-    <h3>@Account.Name</h3>
     <div class="row">
-        <div class="col-6">
-            <MatSelect Label="Account Type" @bind-Value="TypeChosen">
-                <MatOptionString Value="asset">Asset</MatOptionString>
-                <MatOptionString Value="drawings">Drawings</MatOptionString>
-                <MatOptionString Value="expense">Expense</MatOptionString>
-                <MatOptionString Value="capital">Capital</MatOptionString>
-                <MatOptionString Value="income">Income</MatOptionString>
-                <MatOptionString Value="liability">Liability</MatOptionString>
-            </MatSelect>
+        <div class="col-3">
+            <h3>@Account.Name</h3>
         </div>
-        <div class="col-6">
+        <div class="col-3">
+            <select class="form-control" @bind="@TypeChosen">
+                <option value="asset">Asset</option>
+                <option value="drawings">Drawings</option>
+                <option value="expense">Expense</option>
+                <option value="capital">Capital</option>
+                <option value="income">Income</option>
+                <option value="liability">Liability</option>
+            </select>
+        </div>
+        <div class="col-3 d-flex">
             @if (DidAnswer)
             {
                 @if (Correct)
                 {
-                    <MatIcon Icon="thumb_up" />
-                    <span>Correct!</span>
+                    <div class="align-self-center">
+                        <i class="oi oi-thumb-up" />
+                        <span>Correct!</span>
+                    </div>
                 }
                 else
                 {
-                    <MatIcon Icon="thumb_down" />
-                    <span>Incorrect. Try another!</span>
+                    <div class="align-self-center">
+                        <i class="oi oi-thumb-down" />
+                        <span>Incorrect. Try another!</span>
+                    </div>
                 }
             }
         </div>
-    </div>
-    <div class="row">
-        <div class="col justify-content-end">
-            <MatButton Raised="true" OnClick="Answered">Submit</MatButton>
+        <div class="col-3 d-flex justify-content-end">
+            <button class="btn btn-primary" @onclick="Answered">Submit</button>
         </div>
     </div>
 }
 
 @code {
     public Account Account { get; set; }
-    public string TypeChosen { get; set; }
+    public string TypeChosen { get; set; } = "asset";
     public bool Correct { get; set; }
     public bool DidAnswer { get; set; } = false;
 
@@ -65,7 +69,5 @@
         {
             Correct = false;
         }
-
-        TypeChosen = null;
     }
 }
