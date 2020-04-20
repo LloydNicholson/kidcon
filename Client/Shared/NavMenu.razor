@@ -5,27 +5,24 @@
     </button>
 </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="questions">
-                <span class="oi oi-task" aria-hidden="true"></span> Questions
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="transactions">
-                <span class="oi oi-book" aria-hidden="true"></span> Transactions
-            </NavLink>
-        </li>
-    </ul>
-</div>
+<MatNavMenu Class="@NavMenuCssClass" Style="color: white">
+    <MatNavItem Href="" NavLinkMatch="NavLinkMatch.All">
+        <MatIcon Icon="home" />&nbsp; Home
+    </MatNavItem>
+    <MatNavSubMenu @bind-Expanded="@navSubMenuOpenState">
+        <MatNavSubMenuHeader>
+            <MatNavItem Href="questions" AllowSelection="true"><MatIcon Icon="done_all"></MatIcon>&nbsp; Questions</MatNavItem>
+        </MatNavSubMenuHeader>
+        <MatNavSubMenuList>
+            <MatNavItem Href="adelic"> Adelic</MatNavItem>
+            <MatNavItem Href="debitandcredit"> Debit and Credit</MatNavItem>
+        </MatNavSubMenuList>
+    </MatNavSubMenu>
+    <MatNavItem Href="transactions"><MatIcon Icon="grade"></MatIcon>&nbsp; Transactions</MatNavItem>
+</MatNavMenu>
 
 @code {
+    bool navSubMenuOpenState;
     private bool collapseNavMenu = true;
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
