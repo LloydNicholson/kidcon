@@ -1,0 +1,29 @@
+﻿@using ClientApp.Shared.Models
+
+<div class="card">
+    <div>
+        <div class="card-header">
+            @if (Header == null)
+            {
+                <h3>Which side does the following account increase?</h3>
+            }
+            else
+            {
+                <h3>
+                    @Header
+                </h3>
+            }
+        </div>
+
+        <div class="card-body">
+            @Component
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment Header { get; set; }
+    [Parameter]
+    public RenderFragment Component { get; set; }
+}
