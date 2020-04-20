@@ -1,30 +1,32 @@
 ﻿@page "/questions"
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-lg-6">
-            <Question Answer="@((ans) => Answered(ans))"
-                      Account="Account"
-                      DidAnswer="DidAnswer"
-                      QuestionCount="QuestionCount"
-                      Score="Score" />
-        </div>
-        <div class="col-lg-6">
-            @if (DidAnswer)
-            {
-                <QuestionFeedback Time="Time"
-                                  Account="Account"
-                                  Correct="Correct"
-                                  QuestionCount="QuestionCount"
-                                  Score="Score" />
+        <div class="col">
+            <h2>ADELIC</h2>
 
-                @if (QuestionCount >= 10)
-                {
-                    DialogIsOpen = true;
-                    timer.Stop();
-                    <QuestionFinishedModal Restart="RestartGame" DialogIsOpen="DialogIsOpen" Score="Score" />
-                }
-            }
+            <p>Test your ADELIC knowledge by using the following activities below. These activities test your understanding of the ADELIC principle. ADELIC is an acronym for Assets, Drawings, Expenses, Liabilities, Incomes and Capital</p>
+
+            <h2>ACCOUNT CLASSIFICATION</h2>
+            <p>There are various different types of classifications such as Assets, Liabilities etc. and the only way to know them is to learn them parrot style. Repeat, Repeat, Repeat!</p>
         </div>
     </div>
+    <div class="row">
+        <div class="col">
+            <h2>ADELIC PRINCIPLE CLASSIFICATION</h2>
+            <p>
+                Using ADELIC is a skill. It should be used as a guideline or map.
+                The principle is used to find the correct side that an account increases or decreases.
+                Make sure you know your account names and each of their classifications.
+                Once you know each of these, the ADELIC principle becomes easy to use.
+                Identifying which side each of these different accounts increase on will make your general ledger, trial balance and accounting equation transactions easier.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <DebitCreditQuestion />
+        </div>
+    </div>
+
 </div>
