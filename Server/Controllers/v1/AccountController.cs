@@ -74,7 +74,7 @@ namespace ClientApp.Server.Controllers.v1
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetRandomAccounts()
+        public async Task<ActionResult<List<Account>>> GetRandomAccounts()
         {
             using var dbContext = OpenDbContext();
 
@@ -94,6 +94,22 @@ namespace ClientApp.Server.Controllers.v1
             }
 
             return Ok(accounts);
+        }
+
+        [HttpGet]
+        [Route("single")]
+        public async Task<ActionResult<Account>> GetRandomAccount()
+        {
+            using var dbContext = OpenDbContext();
+
+            var existingAccounts = await dbContext.Accounts.AsNoTracking()
+                .Include(a => a.Classification)
+                .Include(a => a.Alternatives)
+                .ToArrayAsync();
+
+            var randomAccount = existingAccounts[Helpers.Helpers.GetRandomNumber(existingAccounts.Length)];
+
+            return Ok(randomAccount);
         }
 
         [HttpGet]

@@ -27,5 +27,16 @@ namespace ClientApp.Client.Services
 
             return response.Response;
         }
+
+        public async Task<Account> GetRandomAccount()
+        {
+            var response = await _httpService.Get<Account>($"{url}/single");
+            if (!response.Success)
+            {
+                throw new ApplicationException(response.HttpResponseMessage.Content.ToString());
+            }
+
+            return response.Response;
+        }
     }
 }

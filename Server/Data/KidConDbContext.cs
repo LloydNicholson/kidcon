@@ -29,7 +29,7 @@ namespace ClientApp.Server.Data
             modelBuilder.Entity<Name>();
             modelBuilder.Entity<Classification>()
                 .HasData(
-                new Classification[] {
+                new List<Classification>() {
                     new Classification() { Id = 1, Type= "Asset" },
                     new Classification() { Id = 2, Type = "Expense" },
                     new Classification() { Id = 3, Type = "Drawings" },
@@ -37,8 +37,52 @@ namespace ClientApp.Server.Data
                     new Classification() { Id = 5, Type = "Income" },
                     new Classification() { Id = 6, Type = "Liability" },
                 });
-            modelBuilder.Entity<Account>();
             modelBuilder.Entity<Alternative>();
+            modelBuilder.Entity<Account>();
+            //.HasData(
+            //new List<Account>()
+            //{
+            //    new Account() { Id = 1, Name = "Trading stock", IncreasingSide = "debit" },
+            //    new Account() { Id = 2, Name = "Vehicles", IncreasingSide = "debit" },
+            //    new Account() { Id = 3, Name = "Equipment", IncreasingSide = "debit" },
+            //    new Account() { Id = 4, Name = "Machinery", IncreasingSide = "debit" },
+            //    new Account() { Id = 5, Name = "Land and buildings", IncreasingSide = "debit" },
+            //    new Account() { Id = 6, Name = "Petty Cash", IncreasingSide = "debit" },
+            //    new Account() { Id = 7, Name = "Cash float", IncreasingSide = "debit" },
+            //    new Account() { Id = 8, Name = "Furniture", IncreasingSide = "debit" },
+            //    new Account() { Id = 9, Name = "Bank", IncreasingSide = "debit" },
+            //    new Account() { Id = 10, Name = "Drawings", IncreasingSide = "debit" },
+            //    new Account() { Id = 11, Name = "Salaries", IncreasingSide = "debit" },
+            //    new Account() { Id = 12, Name = "Wages", IncreasingSide = "debit" },
+            //    new Account() { Id = 13, Name = "Repairs", IncreasingSide = "debit" },
+            //    new Account() { Id = 14, Name = "Advertising", IncreasingSide = "debit" },
+            //    new Account() { Id = 15, Name = "Telephone", IncreasingSide = "debit" },
+            //    new Account() { Id = 16, Name = "Stationery", IncreasingSide = "debit" },
+            //    new Account() { Id = 17, Name = "Water and electricity", IncreasingSide = "debit" },
+            //    new Account() { Id = 18, Name = "Insurance", IncreasingSide = "debit" },
+            //    new Account() { Id = 19, Name = "Packing material", IncreasingSide = "debit" },
+            //    new Account() { Id = 20, Name = "Fuel", IncreasingSide = "debit" },
+            //    new Account() { Id = 21, Name = "Bank charges", IncreasingSide = "debit" },
+            //    new Account() { Id = 22, Name = "Consumable goods", IncreasingSide = "debit" },
+            //    new Account() { Id = 23, Name = "Interest on loan", IncreasingSide = "debit" },
+            //    new Account() { Id = 24, Name = "Interest expense", IncreasingSide = "debit" },
+            //    new Account() { Id = 25, Name = "Postage", IncreasingSide = "debit" },
+            //    new Account() { Id = 26, Name = "Donations expense", IncreasingSide = "debit" },
+            //    new Account() { Id = 27, Name = "Rent expense", IncreasingSide = "debit" },
+            //    new Account() { Id = 28, Name = "Cost of Sales", IncreasingSide = "debit" },
+            //    new Account() { Id = 29, Name = "Loan", IncreasingSide = "credit" },
+            //    new Account() { Id = 30, Name = "Mortgage bond", IncreasingSide = "credit" },
+            //    new Account() { Id = 31, Name = "Bank overdraft", IncreasingSide = "credit" },
+            //    new Account() { Id = 32, Name = "Creditors Control", IncreasingSide = "credit" },
+            //    new Account() { Id = 33, Name = "Current income", IncreasingSide = "credit" },
+            //    new Account() { Id = 34, Name = "Rent income", IncreasingSide = "credit" },
+            //    new Account() { Id = 35, Name = "Donations income", IncreasingSide = "credit" },
+            //    new Account() { Id = 36, Name = "Commission", IncreasingSide = "credit" },
+            //    new Account() { Id = 37, Name = "Sales", IncreasingSide = "credit" },
+            //    new Account() { Id = 38, Name = "Interest income", IncreasingSide = "credit" },
+            //    new Account() { Id = 39, Name = "Interest on fixed deposit", IncreasingSide = "credit" },
+            //    new Account() { Id = 40, Name = "Capital", IncreasingSide = "credit" },
+            //});
         }
     }
 }
