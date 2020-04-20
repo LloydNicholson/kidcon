@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <EncryptedPassword>R7afOQVpbqhHEldBRa271IPu58dpjsub9ljyeGICOFcOtImA/NGj6MDgPj8PTg+ezzUo3BcGzP8M/aq9Cp6BSd8lX05iZAKcExMo2CQg9RICbw7BUWpekSRRJd4E5vHIb1VQMNOTpxNDC9W8Bx2HVHS96n3aRgcqcTqEnZWRLZmrJanAhDJjizP02BUMEIuMHLX6j2xwq8uyA8qGGzYY6Vz5ftzwTNemUjevjLjiVpw75eBp52LmBlu4rwGzBETANiewIglEmqDFTFk/YyFqmSlAA9VVYfyjoe/II2X61T+qzfGb9fFO6gW1/vuNUFxvreMvjoouwUOkGN1xaF71gakfYoqOKX12N77+af2AdMcM3lX2M1hU1rP06Ti2HyGSrVG0YrxC2tB8bCDFhuNHoLrFFlp5g00MnVb2U3MSthQ=</EncryptedPassword>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAFsJtTqU8SEe+mlpl/BE5NQAAAAACAAAAAAADZgAAwAAAABAAAABfHipndOqq7+qGIQBeNja+AAAAAASAAACgAAAAEAAAAGx4eV7Lo3kQ79cF5DPUZQiAAAAAhzWMwpsHguEtB+DI8byKTFA62fTiyG3/X96myFKlBIW3XjYaSv928XE7yZebOh/7WKEhojn7VE4NegBaFVOfI6cwxNWnWQkwa3hZ0mR/HZgGE9TEzoreNShHMz6xv0vu2PgK/2pOx7gBD47N9xUHCctI9tzoUY3VH4C3xJ2F+VwUAAAAD6vNrNjxbCbKwM+zKH0COZtE8rs=</EncryptedPassword>
   </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=kidCon.db</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
 </Project>
