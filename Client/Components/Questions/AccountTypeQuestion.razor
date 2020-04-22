@@ -2,50 +2,47 @@
 
 @if (Account != null)
 {
-    <div class="row">
-        <div class="col-lg-3">
-            <h3>@Account.Name</h3>
+    <div class="row" style="max-height: 120px; min-height: 60px">
+        <div class="col-12">
+            <h4>@Account.Name</h4>
         </div>
-        <div class="col-lg-3">
-            <select class="form-control" @bind="@TypeChosen">
-                <option value="asset">Asset</option>
-                <option value="drawings">Drawings</option>
-                <option value="expense">Expense</option>
-                <option value="capital">Capital</option>
-                <option value="income">Income</option>
-                <option value="liability">Liability</option>
-            </select>
+        <div class="col-12">
+            <div class="input-group mb-3">
+                <select disabled="@(DidAnswer && Correct)" class="form-control" @bind="TypeChosen">
+                    <option value="null">Choose an account...</option>
+                    <option value="asset">Asset</option>
+                    <option value="drawings">Drawings</option>
+                    <option value="expense">Expense</option>
+                    <option value="capital">Capital</option>
+                    <option value="income">Income</option>
+                    <option value="liability">Liability</option>
+                </select>
+                <div class="input-group-append">
+                    <span class="input-group-text" id="correct-icon">
+                        @if (DidAnswer)
+                        {
+                            <i class="@(Correct ? "oi oi-circle-check text-success" : "oi oi-circle-x text-danger" )" />
+                        }
+                        else
+                        {
+                            <i class="oi oi-clock"></i>
+                        }
+                    </span>
+                </div>
+            </div>
         </div>
-        <div class="col-lg-3 d-flex">
-            @if (DidAnswer)
-            {
-                @if (Correct)
-                {
-                    <div class="align-self-center">
-                        <i class="oi oi-thumb-up" />
-                        <span>Correct!</span>
-                    </div>
-                }
-                else
-                {
-                    <div class="align-self-center">
-                        <i class="oi oi-thumb-down" />
-                        <span>Incorrect. Try another!</span>
-                    </div>
-                }
-            }
-        </div>
-        <div class="col-lg-3 d-flex justify-content-end">
-            <button class="btn btn-primary" @onclick="Answered">Submit</button>
+        <div class="col-12 d-flex justify-content-end">
+            <MatButton Raised="true" Disabled="@(DidAnswer && Correct)" OnClick="Answered">Submit</MatButton>
         </div>
     </div>
 }
 
 @code {
     public Account Account { get; set; }
-    public string TypeChosen { get; set; } = "asset";
+    public string TypeChosen { get; set; } = null;
     public bool Correct { get; set; }
     public bool DidAnswer { get; set; } = false;
+    public string ResponseText { get; set; } = string.Empty;
 
     protected async override Task OnInitializedAsync()
     {
@@ -59,19 +56,30 @@
 
     public async Task Answered()
     {
-        DidAnswer = true;
-        if (TypeChosen.Equals(Account.Classification.Type, StringComparison.CurrentCultureIgnoreCase))
+        if (string.IsNullOrEmpty(TypeChosen))
         {
-            Correct = true;
+            ResponseText = "Enter a valid account type.";
+            DidAnswer = false;
+            return;
+        }
+
+        Correct = TypeChosen.Equals(Account.Classification.Type, StringComparison.CurrentCultureIgnoreCase);
+
+        DidAnswer = true;
+        if (Correct)
+        {
+            ResponseText = "Correct!";
             await GetAccount();
-            TypeChosen = null;
         }
         else
         {
-            Correct = false;
+            ResponseText = "Incorrect! Try again.";
+            return;
         }
 
         await Task.Delay(1000);
+        TypeChosen = null;
+        ResponseText = string.Empty;
         DidAnswer = false;
     }
 }

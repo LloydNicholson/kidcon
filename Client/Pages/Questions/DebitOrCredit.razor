@@ -1,5 +1,7 @@
-﻿@page "/debit-or-credit"
+﻿@page "/questions/debit-or-credit"
 @using System.Timers;
+@inject NavigationManager navManager
+@inject IAccountService AccountService
 @implements IDisposable
 
 <div class="row">
@@ -10,18 +12,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-6">
-        <Question>
-            <Component>
-                <DebitOrCreditQuestion Account="Account"
-                                       Answered="@((ans) => Answered(ans))"
-                                       DidAnswer="DidAnswer"
-                                       QuestionCount="QuestionCount"
-                                       Score="Score" />
-            </Component>
-        </Question>
-    </div>
-    <div class="col-lg-6">
+    <div class="col-lg-10 offset-lg-1">
         @if (DidAnswer)
         {
             <QuestionFeedback Time="Time"
@@ -37,13 +28,26 @@
                 <QuestionFinishedModal Restart="RestartGame" DialogIsOpen="DialogIsOpen" Score="Score" />
             }
         }
+        else
+        {
+            <Question>
+                <Component>
+                    <DebitOrCreditQuestion Account="Account"
+                                           Answered="@((ans) => Answered(ans))"
+                                           DidAnswer="DidAnswer"
+                                           QuestionCount="QuestionCount"
+                                           Score="Score" />
+                </Component>
+                <Footer>
+                    <span><i class="oi oi-circle-check"></i> @Score</span>
+                    <span><i class="oi oi-comment-square"></i> @QuestionCount /10</span>
+                </Footer>
+            </Question>
+        }
     </div>
 </div>
 
 @code {
-    [Inject]
-    public IAccountService AccountService { get; set; }
-
     public List<Account> Accounts { get; set; }
     public Account Account { get; set; }
 
@@ -111,12 +115,19 @@
         timer.Start();
     }
 
-    public async Task RestartGame()
+    public async Task RestartGame(bool restart)
     {
-        Score = 0;
-        QuestionCount = 0;
-        await GetAccounts();
-        GetAccount();
+        if (restart)
+        {
+            Score = 0;
+            QuestionCount = 0;
+            await GetAccounts();
+            GetAccount();
+        }
+        else
+        {
+            navManager.NavigateTo("/questions");
+        }
     }
 
     public void Dispose()

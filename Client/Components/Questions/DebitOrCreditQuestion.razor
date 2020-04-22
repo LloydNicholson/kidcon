@@ -1,18 +1,18 @@
 ﻿@if (Account != null)
 {
-    <h3>@(Account.Name)</h3>
-    <div class="row justify-content-between m-2">
-        <div>
-            <span>
-                <button class="btn btn-primary" disabled="@DidAnswer" @onclick="@(() => Answered.InvokeAsync("debit"))">Debit</button>
-            </span>
-            <span>
-                <button class="btn btn-primary" disabled="@DidAnswer" @onclick="@(() => Answered.InvokeAsync("credit"))">Credit</button>
-            </span>
+    <div class="row">
+        <div class="col-lg-12">
+            <h4>@(Account.Name)</h4>
         </div>
-        <div>
-            <span><i class="oi oi-circle-check"></i> @Score</span>
-            <span><i class="oi oi-comment-square"></i> @QuestionCount /10</span>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <span>
+                <MatButton Raised="true" Disabled="@DidAnswer" OnClick="@(() => Answered.InvokeAsync("debit"))">Debit</MatButton>
+            </span>
+            <span>
+                <MatButton Raised="true" Disabled="@DidAnswer" OnClick="@(() => Answered.InvokeAsync("credit"))">Credit</MatButton>
+            </span>
         </div>
     </div>
 }
