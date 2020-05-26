@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ClientApp.Server.Data;
+using ClientApp.Server.Managers.Accounts;
 using ClientApp.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -102,12 +103,7 @@ namespace ClientApp.Server.Controllers.v1
         {
             using var dbContext = OpenDbContext();
 
-            var existingAccounts = await dbContext.Accounts.AsNoTracking()
-                .Include(a => a.Classification)
-                .Include(a => a.Alternatives)
-                .ToArrayAsync();
-
-            var randomAccount = existingAccounts[Helpers.Helpers.GetRandomNumber(existingAccounts.Length)];
+            var randomAccount = await AccountManager.GetRandomAccountAsync(dbContext);
 
             return Ok(randomAccount);
         }

@@ -14,7 +14,7 @@ namespace ClientApp.Server.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3");
+                .HasAnnotation("ProductVersion", "3.1.4");
 
             modelBuilder.Entity("ClientApp.Shared.Models.Account", b =>
                 {
@@ -58,6 +58,73 @@ namespace ClientApp.Server.Migrations
                     b.HasIndex("AccountId");
 
                     b.ToTable("Alternatives");
+                });
+
+            modelBuilder.Entity("ClientApp.Shared.Models.Business", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Businesses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Description = "Builder",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Description = "Plumber",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Description = "Electrician",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            Description = "Accountant",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            Description = "Painter",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            Description = "Gardener",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            Description = "Dancer",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            Description = "Art Supplier",
+                            Type = 1
+                        });
                 });
 
             modelBuilder.Entity("ClientApp.Shared.Models.Classification", b =>

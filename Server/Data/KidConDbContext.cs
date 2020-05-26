@@ -22,6 +22,7 @@ namespace ClientApp.Server.Data
         public DbSet<Classification> Classifications { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Alternative> Alternatives { get; set; }
+        public DbSet<Business> Businesses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -38,6 +39,19 @@ namespace ClientApp.Server.Data
                     new Classification() { Id = 6, Type = "Liability" },
                 });
             modelBuilder.Entity<Alternative>();
+            modelBuilder.Entity<Business>()
+                .HasData(
+                new List<Business>()
+                {
+                    new Business() { Id = 1, Type = BusinessType.Service, Description = "Builder"},
+                    new Business() { Id = 2, Type = BusinessType.Service, Description = "Plumber"},
+                    new Business() { Id = 3, Type = BusinessType.Service, Description = "Electrician"},
+                    new Business() { Id = 4, Type = BusinessType.Service, Description = "Accountant"},
+                    new Business() { Id = 5, Type = BusinessType.Service, Description = "Painter"},
+                    new Business() { Id = 6, Type = BusinessType.Service, Description = "Gardener"},
+                    new Business() { Id = 7, Type = BusinessType.Service, Description = "Dancer"},
+                    new Business() { Id = 8, Type = BusinessType.Product, Description = "Art Supplier"},
+                });
             modelBuilder.Entity<Account>();
             //.HasData(
             //new List<Account>()

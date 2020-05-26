@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ClientApp.Server.Data;
+using ClientApp.Server.Managers.Names;
 using ClientApp.Shared;
 using ClientApp.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -26,22 +27,17 @@ namespace ClientApp.Server.Controllers.v1
         [HttpGet]
         public IActionResult GetRandomName()
         {
-            using (var dbContext = _dbContext)
-            {
-                var names = dbContext.Names.AsNoTracking()
-                    .ToArray();
+            using var dbContext = OpenDbContext();
 
-                var randomFirstName = names[Helpers.Helpers.GetRandomNumber(names.Length)].FirstName;
-                var randomLastName = names[Helpers.Helpers.GetRandomNumber(names.Length)].LastName;
+            var randomName = NameManager.GetRandomName(dbContext);
 
-                return Ok($"{randomFirstName} {randomLastName}");
-            }
+            return Ok($"{randomName.FirstName} {randomName.LastName}");
         }
 
         [HttpPost]
         public IActionResult AddNames([FromBody] List<Name> names)
         {
-            using var dbContext = _dbContext;
+            using var dbContext = OpenDbContext();
             var newNames = new List<Name>();
 
             foreach (var name in names)
@@ -56,5 +52,9 @@ namespace ClientApp.Server.Controllers.v1
             return Ok(newNames);
         }
 
+        private KidConDbContext OpenDbContext()
+        {
+            return _dbContext ?? new KidConDbContext();
+        }
     }
 }

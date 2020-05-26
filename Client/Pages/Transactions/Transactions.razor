@@ -1,5 +1,41 @@
 ﻿@page "/transactions"
-@inherits TransactionsBase
+@inject ITransactionService transactionService
 
 <h3>Journal Transactions</h3>
 <h3>GL Transactions</h3>
+
+@if (sentences != null)
+{
+    <ul>
+        @foreach (var sentence in sentences)
+        {
+            <li>@ScaffoldSentence(sentence)</li>
+        }
+    </ul>
+}
+
+@code {
+    public List<Sentence> sentences;
+
+    protected override async Task OnInitializedAsync()
+    {
+        sentences = await transactionService.GetSentences(10);
+    }
+
+    public string ScaffoldSentence(Sentence sentence)
+    {
+        var random = new Random();
+        var otherParty = $"{sentence.OtherParty.FirstName} {sentence.OtherParty.LastName}";
+        var method = sentence.Method == Method.Paid ?
+            $"paid {otherParty} R{sentence.TransactionAmount}" :
+            $"received R{sentence.TransactionAmount} from {otherParty}";
+
+        var accountName = sentence.Account.Name;
+
+        var account = sentence.Account.Alternatives.Any() ? sentence.Account.Alternatives.ToArray()[random.Next(sentence.Account.Alternatives.Count() - 1)].AlternativeName : accountName;
+
+        var scaffoldedSentence = $"{sentence.BusinessName} {method} for {account}";
+
+        return scaffoldedSentence;
+    }
+}
