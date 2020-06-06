@@ -40,9 +40,27 @@ namespace ClientApp.Server.Managers.Accounts
                     Business = business,
                     Owner = owner,
                     Account = account,
-                    TransactionAmount = Helpers.Helpers.GetRandomNumber(100000),
-                    Method = Helpers.Helpers.GetRandomNumber(2) == 1 ? Method.Received : Method.Paid
+                    TransactionAmount = Helpers.Helpers.GetRandomNumber(100000)
                 };
+
+                var dualAccounts = new string[] { "Asset", "Liability" };
+                var payAccounts = new string[] { "Expense" };
+                var receiveAccounts = new string[] { "Income" };
+
+                if (dualAccounts.Contains(sentence.Account.Classification.Type))
+                {
+                    sentence.Method = Helpers.Helpers.GetRandomNumber(2) == 1 ? Method.Paid : Method.Received;
+                }
+
+                if (payAccounts.Contains(sentence.Account.Classification.Type))
+                {
+                    sentence.Method = Method.Paid;
+                }
+
+                if (receiveAccounts.Contains(sentence.Account.Classification.Type))
+                {
+                    sentence.Method = Method.Received;
+                }
 
                 sentences.Add(sentence);
             }

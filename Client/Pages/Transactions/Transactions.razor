@@ -24,7 +24,6 @@
 
     public string ScaffoldSentence(Sentence sentence)
     {
-        var random = new Random();
         var otherParty = $"{sentence.OtherParty.FirstName} {sentence.OtherParty.LastName}";
         var method = sentence.Method == Method.Paid ?
             $"paid {otherParty} R{sentence.TransactionAmount}" :
@@ -32,9 +31,13 @@
 
         var accountName = sentence.Account.Name;
 
+        // Random alternative
+        var random = new Random();
         var account = sentence.Account.Alternatives.Any() ? sentence.Account.Alternatives.ToArray()[random.Next(sentence.Account.Alternatives.Count() - 1)].AlternativeName : accountName;
 
-        var scaffoldedSentence = $"{sentence.BusinessName} {method} for {account}";
+        // Random business name or owner
+        var randomBusiness = new Random().Next(2) == 1 ? sentence.BusinessName : "The business";
+        var scaffoldedSentence = $"{randomBusiness} {method} for {account}";
 
         return scaffoldedSentence;
     }
