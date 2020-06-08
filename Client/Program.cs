@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using ClientApp.Client.Services;
 using System.Net.Http;
 using Microsoft.Extensions.Logging;
+using Syncfusion.Blazor;
+using Syncfusion.Licensing;
 
 namespace ClientApp.Client
 {
@@ -17,6 +19,8 @@ namespace ClientApp.Client
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
+            builder.Services.AddSyncfusionBlazor();
+            SyncfusionLicenseProvider.RegisterLicense("MjY4ODE4QDMxMzgyZTMxMmUzMENQVmgyNVMrenZmZ2ZIb0ZqaE53M1AzVk9qV01hbHpMUGR4VkV2RlVrZEk9");
             builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             ConfigureServices(builder.Services);
 
