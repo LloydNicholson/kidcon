@@ -1,8 +1,11 @@
 ﻿@page "/transactions"
-@inject ITransactionService transactionService
+@inherits TransactionsBase
 
 <h3>Journal Transactions</h3>
-<h3>GL Transactions</h3>
+@if (!string.IsNullOrEmpty(BusinessName))
+{
+    <h4>Cash Receipt's Journal of @BusinessName for the month ended @(CurrentFormattedDate.AddMonths(-1).ToString("MMMM yyyy"))</h4>
+}
 
 @if (sentences != null)
 {
@@ -14,31 +17,4 @@
     </ul>
 }
 
-@code {
-    public List<Sentence> sentences;
-
-    protected override async Task OnInitializedAsync()
-    {
-        sentences = await transactionService.GetSentences(10);
-    }
-
-    public string ScaffoldSentence(Sentence sentence)
-    {
-        var otherParty = $"{sentence.OtherParty.FirstName} {sentence.OtherParty.LastName}";
-        var method = sentence.Method == Method.Paid ?
-            $"paid {otherParty} R{sentence.TransactionAmount}" :
-            $"received R{sentence.TransactionAmount} from {otherParty}";
-
-        var accountName = sentence.Account.Name;
-
-        // Random alternative
-        var random = new Random();
-        var account = sentence.Account.Alternatives.Any() ? sentence.Account.Alternatives.ToArray()[random.Next(sentence.Account.Alternatives.Count() - 1)].AlternativeName : accountName;
-
-        // Random business name or owner
-        var randomBusiness = new Random().Next(2) == 1 ? sentence.BusinessName : "The business";
-        var scaffoldedSentence = $"{randomBusiness} {method} for {account}";
-
-        return scaffoldedSentence;
-    }
-}
+<!--<h3>GL Transactions</h3>-->

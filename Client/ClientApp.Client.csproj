@@ -9,9 +9,8 @@
     <PackageReference Include="MatBlazor" Version="2.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="3.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Build" Version="3.2.0" PrivateAssets="all" />
-    <PackageReference Include="System.Net.Http.Json" Version="5.0.0-preview.4.20251.6" />
+    <PackageReference Include="System.Net.Http.Json" Version="5.0.0-preview.6.20305.6" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="3.2.0" />
-    <PackageReference Include="Syncfusion.Blazor" Version="18.1.0.55" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\ClientApp.Shared.csproj" />
