@@ -9,7 +9,9 @@ namespace ClientApp.Shared.Models
 
     public class Sentence
     {
-        public Business Business { get; set; }
+        public long Id { get; set; }
+        public long BusinessId { get; set; }
+
         public string BusinessName { get; set; }
         public Name Owner { get; set; }
         public Name OtherParty { get; set; }
@@ -17,5 +19,7 @@ namespace ClientApp.Shared.Models
         public string TransactionPhrase { get; set; }
         public float TransactionAmount { get; set; }
         public Method Method { get; set; }
+
+        public virtual Business Business { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ClientApp.Client.Services;
 using System.Net.Http;
 using Microsoft.Extensions.Logging;
+using ClientApp.Client.Interfaces;
 
 namespace ClientApp.Client
 {

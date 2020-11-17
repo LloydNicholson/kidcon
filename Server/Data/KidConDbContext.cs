@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace ClientApp.Server.Data
 {
-    public class KidConDbContext : DbContext
+    public class KidConDbContext : DbContext, IKidConDbContext
     {
         public KidConDbContext()
         {
@@ -23,6 +23,7 @@ namespace ClientApp.Server.Data
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Alternative> Alternatives { get; set; }
         public DbSet<Business> Businesses { get; set; }
+        public DbSet<Sentence> Sentences { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -97,6 +98,7 @@ namespace ClientApp.Server.Data
             //    new Account() { Id = 39, Name = "Interest on fixed deposit", IncreasingSide = "credit" },
             //    new Account() { Id = 40, Name = "Capital", IncreasingSide = "credit" },
             //});
+            modelBuilder.Entity<Sentence>();
         }
     }
 }

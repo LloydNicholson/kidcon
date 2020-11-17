@@ -62,6 +62,8 @@ namespace ClientApp.Server.Managers.Accounts
                     sentence.Method = Method.Received;
                 }
 
+                dbContext.Sentences.Add(sentence);
+
                 sentences.Add(sentence);
             }
 

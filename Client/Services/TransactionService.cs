@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ClientApp.Client.Interfaces;
 using ClientApp.Shared.Models;
 
 namespace ClientApp.Client.Services

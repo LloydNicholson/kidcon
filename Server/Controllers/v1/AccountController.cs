@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ClientApp.Server.Data;
 using ClientApp.Server.Managers.Accounts;
+using ClientApp.Shared.Contracts;
 using ClientApp.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
