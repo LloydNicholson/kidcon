@@ -45,7 +45,6 @@ namespace ClientApp.Server
                 app.UseWebAssemblyDebugging();
             }
 
-            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseBlazorFrameworkFiles();
 

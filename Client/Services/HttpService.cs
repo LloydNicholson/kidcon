@@ -46,9 +46,9 @@ namespace ClientApp.Client.Services
                 Console.WriteLine("The content type is not supported.");
                 throw;
             }
-            catch (JsonException) // Invalid JSON
+            catch (JsonException ex) // Invalid JSON
             {
-                Console.WriteLine("Invalid JSON.");
+                Console.WriteLine($"Invalid JSON. {ex.Message}");
                 throw;
             }
         }

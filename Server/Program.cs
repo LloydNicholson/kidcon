@@ -20,11 +20,6 @@ namespace ClientApp.Server
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseConfiguration(
-                        new ConfigurationBuilder()
-                        .AddCommandLine(args)
-                        .Build()
-                    );
                     webBuilder.UseStartup<Startup>();
                 });
     }

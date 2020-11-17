@@ -19,7 +19,7 @@ namespace ClientApp.Client.Pages.Transactions
         public DateTime CurrentFormattedDate { get; set; }
         public string BusinessName { get; set; }
 
-        public List<MatDataTableRow> TableItems;
+        //public List<TableRow> TableItems;
 
         public TransactionsBase()
         {
