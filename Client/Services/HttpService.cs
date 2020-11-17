@@ -36,9 +36,9 @@ namespace ClientApp.Client.Services
                     return new HttpResponseWrapper<T>(default, false, responseHTTP);
                 }
             }
-            catch (HttpRequestException) // Non success
+            catch (HttpRequestException ex) // Non success
             {
-                Console.WriteLine("An error occurred.");
+                Console.WriteLine(ex.Message);
                 throw;
             }
             catch (NotSupportedException) // When content type is not valid
