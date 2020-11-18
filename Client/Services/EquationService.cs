@@ -19,7 +19,7 @@ namespace ClientApp.Client.Services
 
         public async Task<string> GetRandomName()
         {
-            var response = await _httpService.Get<string>("v1/name");
+            var response = await _httpService.GetAsync<string>("v1/name");
 
             return response.Response;
         }

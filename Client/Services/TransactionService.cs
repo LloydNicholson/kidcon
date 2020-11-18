@@ -20,7 +20,7 @@ namespace ClientApp.Client.Services
         {
             var uri = $"{url}/sentence/{length}";
 
-            var response = await _httpService.Get<List<Sentence>>(uri);
+            var response = await _httpService.GetAsync<List<Sentence>>(uri);
 
             if (!response.Success)
             {

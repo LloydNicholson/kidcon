@@ -20,7 +20,7 @@ namespace ClientApp.Client.Services
             _httpClient = httpClient;
         }
 
-        public async Task<HttpResponseWrapper<T>> Get<T>(string url)
+        public async Task<HttpResponseWrapper<T>> GetAsync<T>(string url)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace ClientApp.Client.Services
             }
         }
 
-        public async Task<HttpResponseWrapper<object>> Post<T>(string url, T data)
+        public async Task<HttpResponseWrapper<object>> PostAsync<T>(string url, T data)
         {
             var dataJson = JsonSerializer.Serialize(data);
             var stringContent = new StringContent(dataJson, Encoding.UTF8, "application/json");

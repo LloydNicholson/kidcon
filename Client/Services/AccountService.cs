@@ -19,7 +19,7 @@ namespace ClientApp.Client.Services
 
         public async Task<List<Account>> GetRandomAccounts()
         {
-            var response = await _httpService.Get<List<Account>>(url);
+            var response = await _httpService.GetAsync<List<Account>>(url);
             if (!response.Success)
             {
                 throw new ApplicationException(response.HttpResponseMessage.Content.ToString());
@@ -30,7 +30,7 @@ namespace ClientApp.Client.Services
 
         public async Task<Account> GetRandomAccount()
         {
-            var response = await _httpService.Get<Account>($"{url}/single");
+            var response = await _httpService.GetAsync<Account>($"{url}/single");
             if (!response.Success)
             {
                 throw new ApplicationException(response.HttpResponseMessage.Content.ToString());

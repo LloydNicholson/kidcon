@@ -32,6 +32,7 @@ namespace ClientApp.Server
             {
                 config.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,14 +45,21 @@ namespace ClientApp.Server
                 app.UseDeveloperExceptionPage();
                 app.UseWebAssemblyDebugging();
             }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+            }
 
-            app.UseStaticFiles();
+            app.UseCors(c => c.AllowAnyOrigin());
             app.UseBlazorFrameworkFiles();
+            app.UseStaticFiles();
+
 
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
                 endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
             });

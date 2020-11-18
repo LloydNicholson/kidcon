@@ -6,7 +6,7 @@ namespace ClientApp.Client.Services
 {
     public interface IHttpService
     {
-        Task<HttpResponseWrapper<object>> Post<T>(string url, T data);
-        Task<HttpResponseWrapper<T>> Get<T>(string url);
+        Task<HttpResponseWrapper<object>> PostAsync<T>(string url, T data);
+        Task<HttpResponseWrapper<T>> GetAsync<T>(string url);
     }
 }
