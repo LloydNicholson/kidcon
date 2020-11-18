@@ -1,0 +1,35 @@
+﻿<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">Kid Connect</a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<MatNavMenu Class="@NavMenuCssClass" Style="color: white">
+    <MatNavItem OnClick="ToggleNavMenu" Href="" NavLinkMatch="NavLinkMatch.All">
+        <MatIcon Icon="home" />&nbsp; Home
+    </MatNavItem>
+    <MatNavSubMenu>
+        <MatNavSubMenuHeader>
+            <MatNavItem OnClick="ToggleNavMenu" Href="questions">
+                <MatIcon Icon="done_all"></MatIcon>&nbsp; Questions
+            </MatNavItem>
+        </MatNavSubMenuHeader>
+        <MatNavSubMenuList>
+            <MatNavItem OnClick="ToggleNavMenu" Href="questions/account-classification"> Account Classification</MatNavItem>
+            <MatNavItem OnClick="ToggleNavMenu" Href="questions/debit-or-credit"> Debit or Credit</MatNavItem>
+        </MatNavSubMenuList>
+    </MatNavSubMenu>
+    <MatNavItem OnClick="ToggleNavMenu" Href="transactions"><MatIcon Icon="grade"></MatIcon>&nbsp; Transactions</MatNavItem>
+</MatNavMenu>
+
+@code {
+    private bool collapseNavMenu = true;
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        Console.WriteLine("Toggled menu");
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

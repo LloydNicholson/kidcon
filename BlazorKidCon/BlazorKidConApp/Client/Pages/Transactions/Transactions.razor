@@ -1,0 +1,20 @@
+﻿@page "/transactions"
+@inherits TransactionsBase
+
+<h3>Journal Transactions</h3>
+@if (!string.IsNullOrEmpty(BusinessName))
+{
+    <h4>Cash Receipt's Journal of @BusinessName for the month ended @(CurrentFormattedDate.AddMonths(-1).ToString("MMMM yyyy"))</h4>
+}
+
+@if (sentences != null)
+{
+    <ul>
+        @foreach (var sentence in sentences)
+        {
+            <li>@ScaffoldSentence(sentence)</li>
+        }
+    </ul>
+}
+
+<!--<h3>GL Transactions</h3>-->
