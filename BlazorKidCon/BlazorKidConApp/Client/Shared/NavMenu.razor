@@ -5,7 +5,7 @@
     </button>
 </div>
 
-<MatNavMenu Class="@NavMenuCssClass" Style="color: white">
+<MatNavMenu Class="@NavMenuCssClass" Style="color: white; ">
     <MatNavItem OnClick="ToggleNavMenu" Href="" NavLinkMatch="NavLinkMatch.All">
         <MatIcon Icon="home" />&nbsp; Home
     </MatNavItem>
@@ -23,13 +23,11 @@
     <MatNavItem OnClick="ToggleNavMenu" Href="transactions"><MatIcon Icon="grade"></MatIcon>&nbsp; Transactions</MatNavItem>
 </MatNavMenu>
 
-@code {
-    private bool collapseNavMenu = true;
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+@code { private bool collapseNavMenu = true;
+            private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
-    private void ToggleNavMenu()
-    {
-        Console.WriteLine("Toggled menu");
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
+            private void ToggleNavMenu()
+            {
+                Console.WriteLine("Toggled menu");
+                collapseNavMenu = !collapseNavMenu;
+            } }
