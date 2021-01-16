@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using BlazorKidConApp.Server.Data;
 using BlazorKidConApp.Shared.Models;
 using Microsoft.EntityFrameworkCore;
@@ -8,9 +9,9 @@ namespace BlazorKidConApp.Server.Managers.Names
 {
     public static class NameManager
     {
-        public static Name GetRandomName(KidConDbContext dbContext)
+        public static async Task<Name> GetRandomName(KidConDbContext dbContext)
         {
-            var names = dbContext.Names.AsNoTracking().ToArray();
+            var names = await dbContext.Names.AsNoTracking().ToArrayAsync();
 
             var randomFirstName = names[Helpers.Helpers.GetRandomNumber(names.Length)].FirstName;
             var randomLastName = names[Helpers.Helpers.GetRandomNumber(names.Length)].LastName;
@@ -24,9 +25,9 @@ namespace BlazorKidConApp.Server.Managers.Names
             return name;
         }
 
-        public static Business GetRandomBusiness(KidConDbContext dbContext)
+        public static async Task<Business> GetRandomBusiness(KidConDbContext dbContext)
         {
-            var businesses = dbContext.Businesses.AsNoTracking().ToArray();
+            var businesses = await dbContext.Businesses.AsNoTracking().ToArrayAsync();
 
             var randomBusinessName = businesses[Helpers.Helpers.GetRandomNumber(businesses.Length)];
 

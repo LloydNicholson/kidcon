@@ -25,11 +25,11 @@ namespace ClientApp.Server.Controllers.v1
         }
 
         [HttpGet]
-        public IActionResult GetRandomName()
+        public async Task<IActionResult> GetRandomName()
         {
             using var dbContext = OpenDbContext();
 
-            var randomName = NameManager.GetRandomName(dbContext);
+            var randomName = await NameManager.GetRandomName(dbContext);
 
             return Ok($"{randomName.FirstName} {randomName.LastName}");
         }

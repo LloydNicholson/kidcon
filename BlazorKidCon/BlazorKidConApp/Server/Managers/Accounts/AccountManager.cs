@@ -15,19 +15,19 @@ namespace BlazorKidConApp.Server.Managers.Accounts
         {
             var sentences = new List<Sentence>();
             // Get name of owner
-            var owner = NameManager.GetRandomName(dbContext);
-            var business = NameManager.GetRandomBusiness(dbContext);
+            var owner = await NameManager.GetRandomName(dbContext);
+            var business = await NameManager.GetRandomBusiness(dbContext);
 
             var businessName = $"{owner.FirstName}'s {business.Description}s";
 
             for (var i = 0; i < sentenceLength; i++)
             {
                 // Get name of other party
-                var otherParty = NameManager.GetRandomName(dbContext);
+                var otherParty = await NameManager.GetRandomName(dbContext);
 
                 if (owner.FirstName.Equals(otherParty.FirstName, StringComparison.OrdinalIgnoreCase))
                 {
-                    otherParty = NameManager.GetRandomName(dbContext);
+                    otherParty = await NameManager.GetRandomName(dbContext);
                 }
 
                 // Get random account name
@@ -37,7 +37,7 @@ namespace BlazorKidConApp.Server.Managers.Accounts
                 {
                     BusinessName = businessName,
                     OtherParty = otherParty,
-                    Business = business,
+                    BusinessId = business.Id,
                     Owner = owner,
                     Account = account,
                     TransactionAmount = Helpers.Helpers.GetRandomNumber(100000)
@@ -63,16 +63,17 @@ namespace BlazorKidConApp.Server.Managers.Accounts
                 }
 
                 dbContext.Sentences.Add(sentence);
-
                 sentences.Add(sentence);
             }
+
+            dbContext.SaveChanges();
 
             return sentences;
         }
 
         public static async Task<Account> GetRandomAccountAsync(KidConDbContext dbContext)
         {
-            var existingAccounts = await dbContext.Accounts.AsNoTracking()
+            var existingAccounts = await dbContext.Accounts
                 .Include(a => a.Classification)
                 .Include(a => a.Alternatives)
                 .ToArrayAsync();

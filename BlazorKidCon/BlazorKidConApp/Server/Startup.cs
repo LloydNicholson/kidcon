@@ -28,6 +28,7 @@ namespace BlazorKidConApp.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<KidConDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddControllersWithViews().AddNewtonsoftJson(c =>
             {
                 c.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;

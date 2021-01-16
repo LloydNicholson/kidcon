@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,7 +29,14 @@ namespace BlazorKidConApp.Client.Pages.Transactions
 
         protected override async Task OnInitializedAsync()
         {
-            sentences = await transactionService.GetSentences(10);
+            try
+            {
+                sentences = await transactionService.GetSentences(10);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             DefineTransactionDetails();
         }
 
