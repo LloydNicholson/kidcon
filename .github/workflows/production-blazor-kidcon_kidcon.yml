@@ -26,13 +26,13 @@ jobs:
       run: dotnet build --configuration Release
 
     - name: dotnet publish
-      run: dotnet publish -c Release -o Server/ClientApp.Server.csproj
+      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
       with:
         name: .net-app
-        path: Server/ClientApp.Server.csproj
+        path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
     runs-on: windows-latest
