@@ -53,5 +53,5 @@ jobs:
       with:
         app-name: 'kidcon'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_bff8ac0c520e408183af9665a72253fb }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_b6135358a5be4b90858a48b4eb47ff60 }}
         package: .
