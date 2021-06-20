@@ -20,7 +20,7 @@ namespace ClientApp.Server.Managers.Accounts
 
             var businessName = $"{owner.FirstName}'s {business.Description}s";
 
-            for (var i = 0; i < sentenceLength; i++)
+            while (sentences.Count < sentenceLength)
             {
                 // Get name of other party
                 var otherParty = NameManager.GetRandomName(dbContext);
@@ -62,10 +62,12 @@ namespace ClientApp.Server.Managers.Accounts
                     sentence.Method = Method.Received;
                 }
 
-                dbContext.Sentences.Add(sentence);
-
                 sentences.Add(sentence);
+                dbContext.Entry(sentence).State = EntityState.Added;
             }
+
+            await dbContext.Sentences.AddRangeAsync(sentences);
+            await dbContext.SaveChangesAsync();
 
             return sentences;
         }

@@ -48,12 +48,12 @@ namespace ClientApp.Server
             else
             {
                 app.UseExceptionHandler("/Error");
+                app.UseHttpsRedirection();
             }
 
             app.UseCors(c => c.AllowAnyOrigin());
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
-
 
             app.UseRouting();
 
