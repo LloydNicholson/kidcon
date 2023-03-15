@@ -4,3 +4,5 @@
 [Bb]in/
 Kidcon.Server/obj
 .DS_Store
+
+.idea
