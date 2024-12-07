@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Timers;
-using ClientApp.Shared.Models;
+using KidCon.Database.Entities;
 using KidCon.WebApp.Services;
 using Microsoft.AspNetCore.Components;
 
@@ -16,15 +16,15 @@ public partial class Questions : ComponentBase, IDisposable
     };
 
     [Inject]
-    public IAccountService AccountService { get; set; }
+    public AccountService AccountService { get; set; } = null!;
 
     private List<Account> Accounts { get; set; } = null!;
 
-    public Account Account { get; set; }
+    public Account Account { get; set; } = null!;
 
     public bool Correct { get; set; } = false;
 
-    public string Answer { get; set; }
+    private string Answer { get; set; } = null!;
 
     public bool DidAnswer { get; set; }
 
@@ -44,7 +44,7 @@ public partial class Questions : ComponentBase, IDisposable
         this.GetAccount();
     }
 
-    private void TimerOnElapsed(object sender, ElapsedEventArgs e)
+    private void TimerOnElapsed(object? sender, ElapsedEventArgs e)
     {
         this.Time -= 0.1;
         this.StateHasChanged();
@@ -55,21 +55,21 @@ public partial class Questions : ComponentBase, IDisposable
         }
     }
 
-    protected async Task GetAccounts()
+    private async Task GetAccounts()
     {
         this.Accounts = await this.AccountService.GetRandomAccounts();
     }
 
-    protected void GetAccount()
+    private void GetAccount()
     {
         this.Account = this.Accounts[this.QuestionCount];
-        this.Answer = null;
+        this.Answer = string.Empty;
         this.DidAnswer = false;
         this.Time = 1.0;
         this.StateHasChanged();
     }
 
-    protected void Answered(string answer)
+    private void Answered(string answer)
     {
         this.DidAnswer = true;
         this.Answer = answer;
@@ -95,9 +95,6 @@ public partial class Questions : ComponentBase, IDisposable
 
     public void Dispose()
     {
-        if (this.timer != null)
-        {
-            this.timer.Dispose();
-        }
+        this.timer.Dispose();
     }
 }

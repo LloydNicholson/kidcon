@@ -25,7 +25,7 @@ namespace ClientApp.Server.Data
             modelBuilder.Entity<Name>();
             modelBuilder.Entity<Classification>()
                 .HasData(
-                new Classification[] {
+                new[] {
                     new Classification { Id = 1, Type= "Asset" },
                     new Classification { Id = 2, Type = "Expense" },
                     new Classification { Id = 3, Type = "Drawings" },

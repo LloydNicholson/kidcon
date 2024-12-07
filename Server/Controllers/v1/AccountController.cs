@@ -38,7 +38,8 @@ namespace ClientApp.Server.Controllers.v1
 
                 if (!accountExists)
                 {
-                    var classification = classifications.FirstOrDefault(c => string.Equals(c.Type, acc.type, StringComparison.OrdinalIgnoreCase));
+                    var classification =
+                        classifications.FirstOrDefault(c => string.Equals(c.Type, acc.type, StringComparison.OrdinalIgnoreCase));
 
                     var account = new Account
                     {
@@ -67,6 +68,7 @@ namespace ClientApp.Server.Controllers.v1
                     account.Classification = classification;
                 }
             }
+
             await dbContext.SaveChangesAsync();
 
             return this.Ok(existingAccounts);

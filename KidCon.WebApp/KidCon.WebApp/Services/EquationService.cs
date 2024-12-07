@@ -1,15 +1,22 @@
 ﻿namespace KidCon.WebApp.Services;
 
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
-public class EquationService(HttpService httpService) : IEquationService
+public class EquationService(IDbContextFactory<KidConDbContext> factory)
 {
     // private readonly IHttpService httpService = httpService;
 
-    public async Task<string> GetRandomName()
+    public string GetRandomName()
     {
-        var response = await httpService.Get<string>("v1/name");
-        return response.Response;
+        using var dbContext = factory.CreateDbContext();
+        var names = dbContext.Names
+            .AsNoTracking()
+            .ToArray();
+
+        var randomFirstName = names[Helpers.Helpers.GetRandomNumber(names.Length)].FirstName;
+        var randomLastName = names[Helpers.Helpers.GetRandomNumber(names.Length)].LastName;
+
+        return $"{randomFirstName} {randomLastName}";
     }
 
     //  currentAccount: Classification;

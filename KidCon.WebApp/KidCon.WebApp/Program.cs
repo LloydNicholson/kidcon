@@ -1,5 +1,7 @@
+using KidCon.WebApp;
 using KidCon.WebApp.Components;
 using KidCon.WebApp.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,8 +10,11 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
 
-builder.Services.AddSingleton<IEquationService, EquationService>();
-builder.Services.AddSingleton<IAccountService, AccountService>();
+builder.Services.AddPooledDbContextFactory<KidConDbContext>(
+    options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddSingleton<AccountService>();
+builder.Services.AddSingleton<EquationService>();
 
 var app = builder.Build();
 
@@ -26,7 +31,6 @@ else
 }
 
 app.UseHttpsRedirection();
-
 
 app.UseAntiforgery();
 

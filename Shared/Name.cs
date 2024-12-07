@@ -1,4 +1,4 @@
-﻿namespace ClientApp.Shared.Models
+﻿namespace KidCon.Database.Entities
 {
     public class Name
     {

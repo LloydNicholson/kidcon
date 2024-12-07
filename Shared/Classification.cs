@@ -1,8 +1,8 @@
 ﻿
-using System.Collections.Generic;
-
-namespace ClientApp.Shared.Models
+namespace KidCon.Database.Entities
 {
+    using System.Collections.Generic;
+
     public class Classification
     {
         public long Id { get; set; }

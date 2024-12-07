@@ -39,25 +39,27 @@
 </MatCard>
 
 @code {
+
     [Parameter]
-    public Account Account { get; set; }
+    public Account Account { get; set; } = null!;
+
     [Parameter]
     public bool Correct { get; set; }
+
     [Parameter]
     public int Score { get; set; }
+
     [Parameter]
     public int QuestionCount { get; set; }
+
     [Parameter]
     public double Time { get; set; }
 
-    public virtual string AOrAn()
+    protected virtual string AOrAn()
     {
-        if (Account.Classification.Type == "Asset" ||
-            Account.Classification.Type == "Expense" ||
-            Account.Classification.Type == "Income")
-        {
-            return "an";
-        }
-        return "a";
+        return Account.Classification.Type is "Asset" or "Expense" or "Income"
+            ? "an"
+            : "a";
     }
+
 }

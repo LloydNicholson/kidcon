@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Client\ClientApp.Client.csproj" />
-    <ProjectReference Include="..\Shared\ClientApp.Shared.csproj" />
+    <ProjectReference Include="..\Shared\KidCon.Database.Entities.csproj" />
   </ItemGroup>
 
 
