@@ -1,9 +1,4 @@
-﻿using System;
-using System.Net.Http;
-using ClientApp.Shared;
-using Microsoft.AspNetCore.Components;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+﻿using System.Threading.Tasks;
 
 namespace ClientApp.Client.Services
 {

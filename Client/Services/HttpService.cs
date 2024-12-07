@@ -13,7 +13,7 @@ namespace ClientApp.Client.Services
         private readonly HttpClient _httpClient;
 
         private JsonSerializerOptions defaultJsonSerializerOptions =>
-           new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
+           new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
         public HttpService(HttpClient httpClient)
         {

@@ -1,0 +1,30 @@
+﻿@page "/questions"
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <Question Answer="@(ans => Answered(ans))"
+                      Account="Account"
+                      DidAnswer="DidAnswer"
+                      QuestionCount="QuestionCount"
+                      Score="Score" />
+        </div>
+        <div class="col-lg-6">
+            @if (DidAnswer)
+            {
+                <QuestionFeedback Time="Time"
+                                  Account="Account"
+                                  Correct="Correct"
+                                  QuestionCount="QuestionCount"
+                                  Score="Score" />
+
+                @if (QuestionCount >= 10)
+                {
+                    DialogIsOpen = true;
+                    timer.Stop();
+                    <QuestionFinishedModal Restart="RestartGame" DialogIsOpen="DialogIsOpen" Score="Score" />
+                }
+            }
+        </div>
+    </div>
+</div>

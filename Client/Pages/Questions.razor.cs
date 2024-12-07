@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Timers;
 using ClientApp.Client.Services;
 using ClientApp.Shared.Models;
 using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Logging;
 
 namespace ClientApp.Client.Pages
 {
     public partial class Questions : ComponentBase, IDisposable
     {
-        Timer timer = new Timer()
+        Timer timer = new Timer
         {
             Interval = 600
         };

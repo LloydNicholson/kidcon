@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using ClientApp.Server.Data;
-using ClientApp.Shared;
 using ClientApp.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,32 +13,30 @@ namespace ClientApp.Server.Controllers.v1
     [Route("v1/name")]
     public class NameController : ControllerBase
     {
-        private readonly KidConDbContext _dbContext;
+        private readonly KidConDbContext dbContext;
 
         public NameController(KidConDbContext kidConDbContext)
         {
-            _dbContext = kidConDbContext;
+            this.dbContext = kidConDbContext;
         }
 
         [HttpGet]
         public IActionResult GetRandomName()
         {
-            using (var dbContext = _dbContext)
-            {
-                var names = dbContext.Names.AsNoTracking()
-                    .ToArray();
+            using var dbContext = this.dbContext;
+            var names = dbContext.Names.AsNoTracking()
+                .ToArray();
 
-                var randomFirstName = names[Helpers.Helpers.GetRandomNumber(names.Length)].FirstName;
-                var randomLastName = names[Helpers.Helpers.GetRandomNumber(names.Length)].LastName;
+            var randomFirstName = names[Helpers.Helpers.GetRandomNumber(names.Length)].FirstName;
+            var randomLastName = names[Helpers.Helpers.GetRandomNumber(names.Length)].LastName;
 
-                return Ok($"{randomFirstName} {randomLastName}");
-            }
+            return this.Ok($"{randomFirstName} {randomLastName}");
         }
 
         [HttpPost]
         public IActionResult AddNames([FromBody] List<Name> names)
         {
-            using var dbContext = _dbContext;
+            using var dbContext = this.dbContext;
             var newNames = new List<Name>();
 
             foreach (var name in names)
@@ -53,7 +48,7 @@ namespace ClientApp.Server.Controllers.v1
             dbContext.Names.AddRange(newNames);
             dbContext.SaveChanges();
 
-            return Ok(newNames);
+            return this.Ok(newNames);
         }
 
     }

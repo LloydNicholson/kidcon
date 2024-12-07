@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ClientApp.Shared.Models
+﻿namespace ClientApp.Shared.Models
 {
     public class Alternative
     {

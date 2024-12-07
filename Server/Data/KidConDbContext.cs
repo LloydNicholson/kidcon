@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using ClientApp.Shared.Models;
+﻿using ClientApp.Shared.Models;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 
 namespace ClientApp.Server.Data
 {
@@ -30,12 +26,12 @@ namespace ClientApp.Server.Data
             modelBuilder.Entity<Classification>()
                 .HasData(
                 new Classification[] {
-                    new Classification() { Id = 1, Type= "Asset" },
-                    new Classification() { Id = 2, Type = "Expense" },
-                    new Classification() { Id = 3, Type = "Drawings" },
-                    new Classification() { Id = 4, Type = "Capital" },
-                    new Classification() { Id = 5, Type = "Income" },
-                    new Classification() { Id = 6, Type = "Liability" },
+                    new Classification { Id = 1, Type= "Asset" },
+                    new Classification { Id = 2, Type = "Expense" },
+                    new Classification { Id = 3, Type = "Drawings" },
+                    new Classification { Id = 4, Type = "Capital" },
+                    new Classification { Id = 5, Type = "Income" },
+                    new Classification { Id = 6, Type = "Liability" },
                 });
             modelBuilder.Entity<Account>();
             modelBuilder.Entity<Alternative>();

@@ -6,7 +6,6 @@ using ClientApp.Server.Data;
 using ClientApp.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace ClientApp.Server.Controllers.v1
 {
@@ -14,17 +13,17 @@ namespace ClientApp.Server.Controllers.v1
     [Route("v1/account")]
     public class AccountController : ControllerBase
     {
-        private readonly KidConDbContext _dbContext;
+        private readonly KidConDbContext dbContext;
 
         public AccountController(KidConDbContext kidConDbContext)
         {
-            _dbContext = kidConDbContext;
+            this.dbContext = kidConDbContext;
         }
 
         [HttpPost]
         public async Task<ActionResult<List<Account>>> SeedAccounts([FromBody] List<ReceivedAccount> accounts)
         {
-            using var dbContext = OpenDbContext();
+            await using var dbContext = this.OpenDbContext();
             var existingAccounts = await dbContext.Accounts.AsNoTracking()
                 .ToListAsync();
 
@@ -70,13 +69,13 @@ namespace ClientApp.Server.Controllers.v1
             }
             await dbContext.SaveChangesAsync();
 
-            return Ok(existingAccounts);
+            return this.Ok(existingAccounts);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetRandomAccounts()
         {
-            using var dbContext = OpenDbContext();
+            await using var dbContext = this.OpenDbContext();
 
             var existingAccounts = await dbContext.Accounts.AsNoTracking()
                 .Include(a => a.Classification)
@@ -93,25 +92,25 @@ namespace ClientApp.Server.Controllers.v1
                 accounts = accounts.Distinct().ToList();
             }
 
-            return Ok(accounts);
+            return this.Ok(accounts);
         }
 
         [HttpGet]
         [Route("alternatives")]
         public async Task<ActionResult<List<Alternative>>> GetAlternatives()
         {
-            using var dbContext = OpenDbContext();
+            await using var dbContext = this.OpenDbContext();
 
             var alts = await dbContext.Alternatives.AsNoTracking()
                 .Include(a => a.Account)
                 .ToArrayAsync();
 
-            return Ok(alts);
+            return this.Ok(alts);
         }
 
         private KidConDbContext OpenDbContext()
         {
-            return _dbContext ?? new KidConDbContext();
+            return this.dbContext ?? new KidConDbContext();
         }
     }
 }
