@@ -4,8 +4,6 @@ using Microsoft.EntityFrameworkCore;
 
 public class EquationService(IDbContextFactory<KidConDbContext> factory)
 {
-    // private readonly IHttpService httpService = httpService;
-
     public string GetRandomName()
     {
         using var dbContext = factory.CreateDbContext();
