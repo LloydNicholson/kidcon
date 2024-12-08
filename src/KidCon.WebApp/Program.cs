@@ -1,6 +1,7 @@
 using KidCon.WebApp;
 using KidCon.WebApp.Components;
 using KidCon.WebApp.Services;
+using MatBlazor;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,7 @@ builder.Services.AddPooledDbContextFactory<KidConDbContext>(
 
 builder.Services.AddSingleton<AccountService>();
 builder.Services.AddSingleton<EquationService>();
+builder.Services.AddMatBlazor();
 
 var app = builder.Build();
 

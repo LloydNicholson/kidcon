@@ -1,4 +1,5 @@
 ﻿@page "/questions"
+@rendermode InteractiveServer
 
 <div class="container">
     <div class="row">
@@ -7,7 +8,7 @@
                       Account="Account"
                       DidAnswer="DidAnswer"
                       QuestionCount="QuestionCount"
-                      Score="Score" />
+                      Score="Score"/>
         </div>
         <div class="col-lg-6">
             @if (DidAnswer)

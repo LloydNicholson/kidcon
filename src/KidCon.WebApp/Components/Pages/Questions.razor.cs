@@ -22,7 +22,7 @@ public partial class Questions : ComponentBase, IDisposable
 
     public Account Account { get; set; } = null!;
 
-    public bool Correct { get; set; } = false;
+    public bool Correct { get; set; }
 
     private string Answer { get; set; } = null!;
 
@@ -46,13 +46,14 @@ public partial class Questions : ComponentBase, IDisposable
 
     private void TimerOnElapsed(object? sender, ElapsedEventArgs e)
     {
-        this.Time -= 0.1;
-        this.StateHasChanged();
-        if (this.Time <= 0)
+        while (this.Time > 0)
         {
-            this.timer.Stop();
-            this.GetAccount();
+            this.Time -= 0.1;
+            this.StateHasChanged();
         }
+
+        this.timer.Stop();
+        this.GetAccount();
     }
 
     private async Task GetAccounts()

@@ -21,7 +21,7 @@
     
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.0"/>
-        <PackageReference Include="MatBlazor" Version="2.3.0"/>
+        <PackageReference Include="MatBlazor" Version="2.10.0"/>
     </ItemGroup>
 
     <ItemGroup>
