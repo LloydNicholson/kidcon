@@ -31,7 +31,7 @@ public class AccountService(IDbContextFactory<KidConDbContext> factory)
                 var account = new Account
                 {
                     IncreasingSide = acc.increasingSide,
-                    Name = acc.name
+                    Name = acc.name,
                 };
 
                 var altsToAdd = new List<Alternative>();
@@ -41,7 +41,7 @@ public class AccountService(IDbContextFactory<KidConDbContext> factory)
                     var alternative = new Alternative
                     {
                         AlternativeName = alt,
-                        Account = account
+                        Account = account,
                     };
 
                     altsToAdd.Add(alternative);
