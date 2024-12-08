@@ -25,7 +25,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Shared\KidCon.Database.Entities.csproj" />
+        <ProjectReference Include="..\KidCon.Database.Entities\KidCon.Database.Entities.csproj" />
         <ProjectReference Include="..\KidCon.WebApp.Client\KidCon.WebApp.Client.csproj"/>
     </ItemGroup>
 

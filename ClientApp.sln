@@ -2,11 +2,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.0.0
 MinimumVisualStudioVersion = 16.0.0.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KidCon.Database.Entities", "Shared\KidCon.Database.Entities.csproj", "{3668E30E-C133-439B-A8FB-59CDE3ECC2E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KidCon.Database.Entities", "src\KidCon.Database.Entities\KidCon.Database.Entities.csproj", "{3668E30E-C133-439B-A8FB-59CDE3ECC2E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KidCon.WebApp", "KidCon.WebApp\KidCon.WebApp\KidCon.WebApp.csproj", "{3AC96577-8A37-4EF8-BD91-9C0E2E05477F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KidCon.WebApp", "src\KidCon.WebApp\KidCon.WebApp.csproj", "{3AC96577-8A37-4EF8-BD91-9C0E2E05477F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KidCon.WebApp.Client", "KidCon.WebApp\KidCon.WebApp.Client\KidCon.WebApp.Client.csproj", "{E51E571A-BB1A-4EF6-80C5-5521FB79A57B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KidCon.WebApp.Client", "src\KidCon.WebApp.Client\KidCon.WebApp.Client.csproj", "{E51E571A-BB1A-4EF6-80C5-5521FB79A57B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{469C7B26-C2C0-4DC1-900C-4747C977CC49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,5 +62,10 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6297D47D-E8D5-48E8-A423-E21E38D21D54}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3668E30E-C133-439B-A8FB-59CDE3ECC2E0} = {469C7B26-C2C0-4DC1-900C-4747C977CC49}
+		{3AC96577-8A37-4EF8-BD91-9C0E2E05477F} = {469C7B26-C2C0-4DC1-900C-4747C977CC49}
+		{E51E571A-BB1A-4EF6-80C5-5521FB79A57B} = {469C7B26-C2C0-4DC1-900C-4747C977CC49}
 	EndGlobalSection
 EndGlobal
