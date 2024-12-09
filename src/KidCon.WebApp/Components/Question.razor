@@ -1,4 +1,6 @@
-﻿<MatCard>
+﻿@rendermode InteractiveServer
+
+<MatCard>
     <MatCardContent Class="m-2">
         <MatHeadline6>
             <h3>Which side does the following account increase?</h3>
@@ -9,11 +11,11 @@
             <div class="row justify-content-between m-2">
                 <div>
                         <span>
-                            <MatButton Raised="true" Disabled="DidAnswer"
+                            <MatButton Raised Disabled="DidAnswer"
                                        OnClick="@(() => Answer.InvokeAsync("debit"))">Debit</MatButton>
                         </span>
                     <span>
-                            <MatButton Raised="true" Disabled="DidAnswer"
+                            <MatButton Raised Disabled="DidAnswer"
                                        OnClick="@(() => Answer.InvokeAsync("credit"))">Credit</MatButton>
                         </span>
                 </div>

@@ -1,4 +1,6 @@
-﻿<MatCard>
+﻿@rendermode InteractiveServer
+
+<MatCard>
     <MatCardContent Class="m-2">
         <div class="demo-mat-card-content">
             <MatHeadline6 class="demo-mat-card-clean-margin">
@@ -32,34 +34,8 @@
         </MatBody1>
     </MatCardContent>
 
-    @if (Time > 0)
+    @if (TimeRemainingSeconds > 0)
     {
-        <MatProgressBar @bind-Progress="Time"></MatProgressBar>
+        <MatProgressBar Progress="TimeRatio"></MatProgressBar>
     }
 </MatCard>
-
-@code {
-
-    [Parameter]
-    public Account Account { get; set; } = null!;
-
-    [Parameter]
-    public bool Correct { get; set; }
-
-    [Parameter]
-    public int Score { get; set; }
-
-    [Parameter]
-    public int QuestionCount { get; set; }
-
-    [Parameter]
-    public double Time { get; set; }
-
-    protected virtual string AOrAn()
-    {
-        return Account.Classification.Type is "Asset" or "Expense" or "Income"
-            ? "an"
-            : "a";
-    }
-
-}

@@ -1,20 +1,13 @@
 ﻿namespace KidCon.WebApp.Components.Pages;
 
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Timers;
 using KidCon.Database.Entities;
 using KidCon.WebApp.Services;
 using Microsoft.AspNetCore.Components;
 
-public partial class Questions : ComponentBase, IDisposable
+public partial class Questions : ComponentBase
 {
-    private readonly Timer timer = new()
-    {
-        Interval = 600,
-    };
-
     [Inject]
     public AccountService AccountService { get; set; } = null!;
 
@@ -26,33 +19,19 @@ public partial class Questions : ComponentBase, IDisposable
 
     private string Answer { get; set; } = null!;
 
-    public bool DidAnswer { get; set; }
+    public bool DidAnswer => !string.IsNullOrWhiteSpace(this.Answer);
 
-    public double Time { get; set; } = 1.0;
+    public double TimeRemaining { get; set; } = 4;
 
     public int Score { get; set; }
 
-    public int QuestionCount { get; set; } = 0;
+    public int QuestionCount { get; set; }
 
-    public bool DialogIsOpen { get; set; } = false;
+    public bool DialogIsOpen { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        this.timer.Elapsed += this.TimerOnElapsed;
-
         await this.GetAccounts();
-        this.GetAccount();
-    }
-
-    private void TimerOnElapsed(object? sender, ElapsedEventArgs e)
-    {
-        while (this.Time > 0)
-        {
-            this.Time -= 0.1;
-            this.StateHasChanged();
-        }
-
-        this.timer.Stop();
         this.GetAccount();
     }
 
@@ -65,14 +44,12 @@ public partial class Questions : ComponentBase, IDisposable
     {
         this.Account = this.Accounts[this.QuestionCount];
         this.Answer = string.Empty;
-        this.DidAnswer = false;
-        this.Time = 1.0;
+        this.TimeRemaining = 4;
         this.StateHasChanged();
     }
 
     private void Answered(string answer)
     {
-        this.DidAnswer = true;
         this.Answer = answer;
         this.Correct = this.Answer == this.Account.IncreasingSide;
 
@@ -82,8 +59,6 @@ public partial class Questions : ComponentBase, IDisposable
         }
 
         this.QuestionCount++;
-
-        this.timer.Start();
     }
 
     public async Task RestartGame()
@@ -92,10 +67,5 @@ public partial class Questions : ComponentBase, IDisposable
         this.QuestionCount = 0;
         await this.GetAccounts();
         this.GetAccount();
-    }
-
-    public void Dispose()
-    {
-        this.timer.Dispose();
     }
 }

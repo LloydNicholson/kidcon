@@ -29,4 +29,10 @@
         <ProjectReference Include="..\KidCon.WebApp.Client\KidCon.WebApp.Client.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="Components\QuestionFeedback.razor.cs">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      </Content>
+    </ItemGroup>
+
 </Project>

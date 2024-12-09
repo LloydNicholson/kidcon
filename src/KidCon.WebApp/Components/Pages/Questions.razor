@@ -13,17 +13,17 @@
         <div class="col-lg-6">
             @if (DidAnswer)
             {
-                <QuestionFeedback Time="Time"
+                <QuestionFeedback TimeRemainingSeconds="TimeRemaining"
+                                  TimerFinished="GetAccount"
                                   Account="Account"
                                   Correct="Correct"
                                   QuestionCount="QuestionCount"
-                                  Score="Score" />
+                                  Score="Score"/>
 
                 @if (QuestionCount >= 10)
                 {
                     DialogIsOpen = true;
-                    timer.Stop();
-                    <QuestionFinishedModal Restart="RestartGame" DialogIsOpen="DialogIsOpen" Score="Score" />
+                    <QuestionFinishedModal Restart="RestartGame" DialogIsOpen="DialogIsOpen" Score="Score"/>
                 }
             }
         </div>
